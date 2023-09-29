@@ -2,25 +2,27 @@
 A global variable definition
 "
 Class {
-	#name : #RG2GlobalVariableDefinition,
-	#superclass : #RG2Definition,
-	#category : 'Ring2-Core-Kernel'
+	#name : 'RG2GlobalVariableDefinition',
+	#superclass : 'RG2Definition',
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2GlobalVariableDefinition >> addoptToParentStub [
 
 	super addoptToParentStub.
 	self parent addGlobalVariable: self.
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2GlobalVariableDefinition >> defaultParentStub [
 
 	^ self defaultEnvironmentStub
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2GlobalVariableDefinition >> isGlobalVariable [
 
 	^true

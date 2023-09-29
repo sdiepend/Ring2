@@ -1,6 +1,6 @@
-Extension { #name : #ClassVariable }
+Extension { #name : 'ClassVariable' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 ClassVariable >> asRing2MinimalDefinitionIn: aRG2Environment [ 
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

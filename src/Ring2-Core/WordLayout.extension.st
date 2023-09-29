@@ -1,6 +1,6 @@
-Extension { #name : #WordLayout }
+Extension { #name : 'WordLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 WordLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

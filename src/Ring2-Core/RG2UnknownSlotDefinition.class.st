@@ -1,25 +1,27 @@
 Class {
-	#name : #RG2UnknownSlotDefinition,
-	#superclass : #RG2SlotDefinition,
+	#name : 'RG2UnknownSlotDefinition',
+	#superclass : 'RG2SlotDefinition',
 	#instVars : [
 		'expression'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2UnknownSlotDefinition >> defaultExpression [
 
 	'InstanceVariableSlot named: #slotOfUnknownType'
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2UnknownSlotDefinition >> expression [
 
 	^ self backend forBehavior expressionFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2UnknownSlotDefinition >> expression: aString [
 
 	self parent parent announceDefinitionChangeDuring: [ 
@@ -28,7 +30,7 @@ RG2UnknownSlotDefinition >> expression: aString [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2UnknownSlotDefinition >> initialize [
 
 	super initialize.
@@ -37,7 +39,7 @@ RG2UnknownSlotDefinition >> initialize [
 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2UnknownSlotDefinition >> makeResolved [
 
 	super makeResolved.
@@ -46,25 +48,25 @@ RG2UnknownSlotDefinition >> makeResolved [
 
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2UnknownSlotDefinition >> printOn: aStream [
 
 	aStream << self name asString << ' => ' << self expression asString
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2UnknownSlotDefinition >> pvtExpression [
 
 	^ expression value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2UnknownSlotDefinition >> pvtExpression: aString [
 
 	^ expression := aString
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2UnknownSlotDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 

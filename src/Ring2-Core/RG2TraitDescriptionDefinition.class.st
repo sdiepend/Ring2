@@ -2,18 +2,20 @@
 RG2TraitDescriptionDefinition is the common parent for traits and metatraits that know their users (ie. classes/metaclasses)
 "
 Class {
-	#name : #RG2TraitDescriptionDefinition,
-	#superclass : #RG2BehaviorDefinition,
-	#category : 'Ring2-Core-Kernel'
+	#name : 'RG2TraitDescriptionDefinition',
+	#superclass : 'RG2BehaviorDefinition',
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #variables }
+{ #category : 'variables' }
 RG2TraitDescriptionDefinition >> allSharedPoolNames [
 
 	^#()
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2TraitDescriptionDefinition >> initialize [
 
 	super initialize.
@@ -22,13 +24,13 @@ RG2TraitDescriptionDefinition >> initialize [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2TraitDescriptionDefinition >> isTrait [
 
 	^true
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2TraitDescriptionDefinition >> methods [
 
 	| allMethods |
@@ -38,7 +40,7 @@ RG2TraitDescriptionDefinition >> methods [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDescriptionDefinition >> name: aString [
 
 	| usersWithOldDefinition |
@@ -53,19 +55,19 @@ RG2TraitDescriptionDefinition >> name: aString [
 		self announcer behaviorModificationAppliedTo: assoc key. ].		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2TraitDescriptionDefinition >> sharedPools [
 
 	^#()
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDescriptionDefinition >> trait [
 
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDescriptionDefinition >> users [
 	
 	"return collection of user of the trait"

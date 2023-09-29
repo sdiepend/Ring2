@@ -1,6 +1,6 @@
-Extension { #name : #RPackage }
+Extension { #name : 'RPackage' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 RPackage >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

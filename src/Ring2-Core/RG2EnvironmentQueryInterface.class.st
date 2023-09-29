@@ -1,14 +1,16 @@
 Class {
-	#name : #RG2EnvironmentQueryInterface,
-	#superclass : #Object,
+	#name : 'RG2EnvironmentQueryInterface',
+	#superclass : 'Object',
 	#instVars : [
 		'environment',
 		'behaviorsDictionary'
 	],
-	#category : 'Ring2-Core-Environment'
+	#category : 'Ring2-Core-Environment',
+	#package : 'Ring2-Core',
+	#tag : 'Environment'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface class >> for: aRG2Environment [
 
 	^ self new 
@@ -16,26 +18,26 @@ RG2EnvironmentQueryInterface class >> for: aRG2Environment [
 		yourself.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2EnvironmentQueryInterface >> allClasses [
 
 	^ self behaviors select: [ :each | each isClass ] 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> allClassesAndTraits [
 
 	^ self behaviors select: [ :each | each isClass or: [ each isTrait and: [ each isMetaclassTrait not ] ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2EnvironmentQueryInterface >> behaviorNamed: aSymbol [
 
 	^ self behaviorNamed: aSymbol ifAbsent: [ nil]
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> behaviorNamed: aSymbol ifAbsent: aBlock [
 
 	| found siblingName | 
@@ -68,13 +70,13 @@ RG2EnvironmentQueryInterface >> behaviorNamed: aSymbol ifAbsent: aBlock [
 	^ aBlock value.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> behaviorNamedExactlyAs: aSymbol [ 
 
 	^ self behaviorNamedExactlyAs: aSymbol ifAbsent: [nil]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> behaviorNamedExactlyAs: aSymbol ifAbsent: aBlock [
 
 	^ self behaviorsDictionary at: aSymbol asSymbol ifAbsent: aBlock
@@ -86,7 +88,7 @@ RG2EnvironmentQueryInterface >> behaviorNamedExactlyAs: aSymbol ifAbsent: aBlock
 	"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> behaviors [
 	"Retrieves the traits defined in the receiver"
 
@@ -97,7 +99,7 @@ RG2EnvironmentQueryInterface >> behaviors [
 
 ]
 
-{ #category : #caching }
+{ #category : 'caching' }
 RG2EnvironmentQueryInterface >> behaviorsDictionary [
 
 	^ behaviorsDictionary ifNil: [ 
@@ -108,35 +110,35 @@ RG2EnvironmentQueryInterface >> behaviorsDictionary [
 		]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> behaviorsDo: aBlock [
 
 	self environment behaviorsDo: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> classNamed: aSymbol [
 
 	^ self behaviorNamed: aSymbol
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> classOrTraitNamed: aSymbol [
 	
 	^ self behaviorNamed: aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2EnvironmentQueryInterface >> environment [
 	^ environment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2EnvironmentQueryInterface >> environment: anObject [
 	environment := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> globalVariables [
 	"Retrieves the traits defined in the receiver"
 
@@ -147,13 +149,13 @@ RG2EnvironmentQueryInterface >> globalVariables [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> globalVariablesDo: aBlock [
 
 	self environment globalVariablesDo: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> includesClassNamed: aSymbol [ 
 
 	self globalVariablesDo: [ :var |
@@ -171,7 +173,7 @@ RG2EnvironmentQueryInterface >> includesClassNamed: aSymbol [
 	"
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2EnvironmentQueryInterface >> includesPackageNamed: aString [
 	
 	self packagesDo: [:each |
@@ -179,13 +181,13 @@ RG2EnvironmentQueryInterface >> includesPackageNamed: aString [
 	^ false
 ]
 
-{ #category : #caching }
+{ #category : 'caching' }
 RG2EnvironmentQueryInterface >> invalidateName: aSymbol [
 
 	behaviorsDictionary removeKey: aSymbol
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> packageNamed: aString [
 	
 	self packagesDo: [:each |
@@ -194,7 +196,7 @@ RG2EnvironmentQueryInterface >> packageNamed: aString [
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> packages [
 	"Retrieves the traits defined in the receiver"
 
@@ -205,13 +207,13 @@ RG2EnvironmentQueryInterface >> packages [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> packagesDo: aBlock [
 
 	self environment packagesDo: aBlock
 ]
 
-{ #category : #caching }
+{ #category : 'caching' }
 RG2EnvironmentQueryInterface >> replaceName: aSymbol with: aNewSymbol [
 
 	| aRG2Behavior |
@@ -223,13 +225,13 @@ RG2EnvironmentQueryInterface >> replaceName: aSymbol with: aNewSymbol [
 	
 ]
 
-{ #category : #caching }
+{ #category : 'caching' }
 RG2EnvironmentQueryInterface >> resetBehaviorsDictionary [
 
 	behaviorsDictionary := IdentityDictionary new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2EnvironmentQueryInterface >> traitNamed: traitName [
 	"Retrieves an RG2TraitDefinition object. The traitName could be theMetaClass name"
 	| trait |

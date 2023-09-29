@@ -1,6 +1,6 @@
-Extension { #name : #EmptyLayout }
+Extension { #name : 'EmptyLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 EmptyLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	| aHost |

@@ -74,8 +74,8 @@ Example:
 
 "
 Class {
-	#name : #RG2MethodDefinition,
-	#superclass : #RG2ElementDefinition,
+	#name : 'RG2MethodDefinition',
+	#superclass : 'RG2ElementDefinition',
 	#instVars : [
 		'protocol',
 		'sourceCode',
@@ -84,10 +84,12 @@ Class {
 		'time',
 		'tags'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2MethodDefinition >> addoptToParentStub [
 
 	super addoptToParentStub.
@@ -98,13 +100,13 @@ RG2MethodDefinition >> addoptToParentStub [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> argumentNames [		
 
 	^ self ast argumentNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> ast [
 	"Answer my AST with semantic analysis. See #parseTree."
 	
@@ -113,31 +115,31 @@ RG2MethodDefinition >> ast [
 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2MethodDefinition >> astFromSource [
 
 	^ RBParser parseMethod: self sourceCode
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> author [
 
 	^ self backend forBehavior authorFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> author: aString [
 
 	self backend forBehavior setAuthorFor: self to: aString
 ]
 
-{ #category : #'backward compatibility' }
+{ #category : 'backward compatibility' }
 RG2MethodDefinition >> category [
 
 	^ self protocol
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> cleanTags [
 
 	self backend forMethod cleanMethodTagsFor: self.
@@ -145,55 +147,55 @@ RG2MethodDefinition >> cleanTags [
 	"todo: announce"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MethodDefinition >> compiledMethod [
 	^ self
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2MethodDefinition >> defaultAuthor [
 
 	^ ''
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2MethodDefinition >> defaultParentStub [
 
 	^ self defaultClassStub
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2MethodDefinition >> defaultSourceCode [
 
 	^ self sourceCodeForNoSelector
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2MethodDefinition >> defaultTags [
 
 	^ Set new
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2MethodDefinition >> defaultTime [
 
 	^ DateAndTime new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> fullName [
 	"Keeps a unique description for the receiver. As annotation to avoid converting each time is invoked"
 	
 	^ (self parent name, '>>#', self selector) asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> hasSourceCode [
 
 	^ self backend forMethod hasSourceCodeFor: self
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2MethodDefinition >> initialize [
 
 	super initialize.
@@ -206,7 +208,7 @@ RG2MethodDefinition >> initialize [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2MethodDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -219,37 +221,37 @@ RG2MethodDefinition >> initializeUnresolved [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> isExtension [
 	"The receiver is an extension when is defined in a different package to the one of its parent"
 	
 	^ self parent package ~= self package
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2MethodDefinition >> isFromTrait [
 	^ self parent isTrait
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2MethodDefinition >> isMetaSide [
 
 	^ self parent isMeta
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2MethodDefinition >> isMethod [
 
 	^true
 ]
 
-{ #category : #'queries - tags' }
+{ #category : 'queries - tags' }
 RG2MethodDefinition >> isTaggedWith: aSymbol [
 
 	^self tags includes: aSymbol 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2MethodDefinition >> makeResolved [
 
 	super makeResolved.
@@ -262,24 +264,24 @@ RG2MethodDefinition >> makeResolved [
 	tags := self tags.
 ]
 
-{ #category : #'queries - class' }
+{ #category : 'queries - class' }
 RG2MethodDefinition >> methodClass [
 
 	^ self parent
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> numArgs [
 	^ self selector asString numArgs
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> package [
 
 	^ self backend forMethod methodPackageFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> package: aRG2PackageDefinition [
 
 	| oldPackage |
@@ -295,7 +297,7 @@ RG2MethodDefinition >> package: aRG2PackageDefinition [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> parseTree [
 
 	^(RBParser 
@@ -304,7 +306,7 @@ RG2MethodDefinition >> parseTree [
 
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2MethodDefinition >> printOn: aStream [ 
 
 	self parent name ifNotNil: [
@@ -313,7 +315,7 @@ RG2MethodDefinition >> printOn: aStream [
 	aStream print: self selector
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> protocol [
 
 	| methodTags |
@@ -325,7 +327,7 @@ RG2MethodDefinition >> protocol [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> protocol: aSymbol [
 
 	"for compatiblity with the old protocols"
@@ -336,19 +338,19 @@ RG2MethodDefinition >> protocol: aSymbol [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtAuthor [
 
 	^ author value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtAuthor: aString [
 
 	^ author := aString
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtCleanTags [
 
 	tags := self defaultTags.
@@ -358,13 +360,13 @@ RG2MethodDefinition >> pvtCleanTags [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtPackage [
 
 	^ package value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtPackage: aRG2PackageDefinition [
 
 	self environment verifyOwnership: aRG2PackageDefinition.
@@ -372,7 +374,7 @@ RG2MethodDefinition >> pvtPackage: aRG2PackageDefinition [
 	^ package := aRG2PackageDefinition
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -387,7 +389,7 @@ RG2MethodDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2MethodDefinition >> pvtSafeSourceCode [
 
 	| aStringOrUnresolved |
@@ -400,19 +402,19 @@ RG2MethodDefinition >> pvtSafeSourceCode [
 		ifTrue: [ aStringOrUnresolved value ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2MethodDefinition >> pvtSourceCode [
 
 	^ sourceCode 
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2MethodDefinition >> pvtSourceCode: anObject [
 
 	sourceCode := anObject
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtTagWith: aSymbol [
 	
 	tags isRing2Resolved ifFalse: [ 
@@ -422,25 +424,25 @@ RG2MethodDefinition >> pvtTagWith: aSymbol [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2MethodDefinition >> pvtTagsDo: aBlock [
 
 	^ tags value do: aBlock
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtTime [
 
 	^ time value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtTime: aDateAndTime [
 
 	^ time := aDateAndTime
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2MethodDefinition >> pvtUntagFrom: aSymbol [
 	
 	(tags value includes: aSymbol)
@@ -451,26 +453,26 @@ RG2MethodDefinition >> pvtUntagFrom: aSymbol [
 	
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 RG2MethodDefinition >> removeFromSystem [
 
 	^ self parent removeLocalMethod: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> selector [
 	"Retrieves the name of the method"
 
 	^ self name asSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> sourceCode [
 
 	^ self backend forMethod sourceCodeFor: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> sourceCode: anObject [
 
 	"ATTENTION: There is no check here if the selector is changed!"
@@ -479,19 +481,19 @@ RG2MethodDefinition >> sourceCode: anObject [
 	"TODO: announcements"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> sourceCodeForNoSelector [
 
 	^ 'unresolvedMessage', String cr, String tab, '"source code for the method model not set"'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MethodDefinition >> sourceCodeForNoSource [
 
 	^ self selector asMethodPreamble, String cr, String tab, '"source code for the method model not set"'
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> tagWith: aSymbol [ 
 
 	self backend forMethod tagMethod: self with: aSymbol.
@@ -501,7 +503,7 @@ RG2MethodDefinition >> tagWith: aSymbol [
 	"todo:announce"
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 RG2MethodDefinition >> tags [
 
 	| allTags |
@@ -511,25 +513,25 @@ RG2MethodDefinition >> tags [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> tagsDo: aBlock [
 
 	self backend forMethod tagsForMethod: self do: aBlock
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> time [
 
 	^ self backend forBehavior timeFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> time: aDateAndTime [
 
 	self backend forBehavior setTimeFor: self to: aDateAndTime
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MethodDefinition >> untagFrom: aSymbol [
 
 	self backend forMethod untagMethod: self from: aSymbol

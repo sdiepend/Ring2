@@ -2,12 +2,14 @@
 A class variable definition
 "
 Class {
-	#name : #RG2ClassVariableDefinition,
-	#superclass : #RG2VariableDefinition,
-	#category : 'Ring2-Core-Kernel'
+	#name : 'RG2ClassVariableDefinition',
+	#superclass : 'RG2VariableDefinition',
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2ClassVariableDefinition >> addoptToParentStub [
 
 	super addoptToParentStub.
@@ -15,13 +17,13 @@ RG2ClassVariableDefinition >> addoptToParentStub [
 	self parent addClassVariable: self.
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2ClassVariableDefinition >> defaultParentStub [
 
 	^ self defaultClassStub
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2ClassVariableDefinition >> definitionString [
 
 	"TODO: special class variables?"
@@ -30,7 +32,7 @@ RG2ClassVariableDefinition >> definitionString [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassVariableDefinition >> isClassVariable [
 
 	^true

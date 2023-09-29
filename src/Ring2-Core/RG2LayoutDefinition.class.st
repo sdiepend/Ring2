@@ -1,10 +1,12 @@
 Class {
-	#name : #RG2LayoutDefinition,
-	#superclass : #RG2Definition,
-	#category : 'Ring2-Core-Kernel'
+	#name : 'RG2LayoutDefinition',
+	#superclass : 'RG2Definition',
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2LayoutDefinition >> addoptToParentStub [
 
 	super addoptToParentStub.
@@ -12,96 +14,96 @@ RG2LayoutDefinition >> addoptToParentStub [
 	self parent pvtLayout: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2LayoutDefinition >> allSlots [
 
 	^ {  }
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2LayoutDefinition >> defaultParentStub [
 
 	^ self defaultClassStub
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2LayoutDefinition >> instVarNames [
 	^ {}
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isBitsLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isByteLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isCompiledMethodLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isEmptyLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isEphemeronLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isFixedLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isImmediateLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isLayout [
 
 	^true
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isObjectLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isPointerLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isVariableLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isWeakLayout [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2LayoutDefinition >> isWordLayout [
 
 	^ false

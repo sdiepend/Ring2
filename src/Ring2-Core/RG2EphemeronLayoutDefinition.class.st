@@ -1,10 +1,12 @@
 Class {
-	#name : #RG2EphemeronLayoutDefinition,
-	#superclass : #RG2PointerLayoutDefinition,
-	#category : 'Ring2-Core-Kernel'
+	#name : 'RG2EphemeronLayoutDefinition',
+	#superclass : 'RG2PointerLayoutDefinition',
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2EphemeronLayoutDefinition >> isEphemeronLayout [
 
 	^ true

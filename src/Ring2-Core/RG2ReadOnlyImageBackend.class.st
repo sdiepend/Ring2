@@ -1,10 +1,12 @@
 Class {
-	#name : #RG2ReadOnlyImageBackend,
-	#superclass : #RG2ReadOnlyBackend,
-	#category : 'Ring2-Core-Environment'
+	#name : 'RG2ReadOnlyImageBackend',
+	#superclass : 'RG2ReadOnlyBackend',
+	#category : 'Ring2-Core-Environment',
+	#package : 'Ring2-Core',
+	#tag : 'Environment'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyImageBackend class >> for: aRG2Environment [
 
 	^ self new 
@@ -12,31 +14,31 @@ RG2ReadOnlyImageBackend class >> for: aRG2Environment [
 		yourself.
 ]
 
-{ #category : #'trait alias' }
+{ #category : 'trait alias' }
 RG2ReadOnlyImageBackend >> aliasesFor: aRG2TraitAliasDefinition do: aBlock [
 
 	^ (aRG2TraitAliasDefinition propertyNamed: #realObject ifAbsent: [ self error: 'You can use only trait transformations generated directly by this backend' ]) aliases do: [:each | aBlock value: each ]
 ]
 
-{ #category : #method }
+{ #category : 'method' }
 RG2ReadOnlyImageBackend >> astFor: aRG2MethodDefinition [
 
 	^  aRG2MethodDefinition astFromSource
 ]
 
-{ #category : #method }
+{ #category : 'method' }
 RG2ReadOnlyImageBackend >> authorFor: aRG2MethodDefinition [
 
 	^ aRG2MethodDefinition authorForStamp: (self realMethodFor: aRG2MethodDefinition) stamp
 ]
 
-{ #category : #metaclass }
+{ #category : 'metaclass' }
 RG2ReadOnlyImageBackend >> baseClassFor: aRG2MetaclassTraitDefinition [
 
 	^ (self realBehaviorFor: aRG2MetaclassTraitDefinition) baseClass asRing2MinimalDefinitionIn: aRG2MetaclassTraitDefinition environment.
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 RG2ReadOnlyImageBackend >> behaviorsFor: aRG2Environment do: aBlock [
 
 	SystemNavigation default allBehaviors do: [:each |
@@ -45,40 +47,40 @@ RG2ReadOnlyImageBackend >> behaviorsFor: aRG2Environment do: aBlock [
 		aBlock value: def.].
 ]
 
-{ #category : #class }
+{ #category : 'class' }
 RG2ReadOnlyImageBackend >> categoryFor: aRG2BehaviorDefinition [
 
 	^ (self realBehaviorFor: aRG2BehaviorDefinition) category
 
 ]
 
-{ #category : #'class comment' }
+{ #category : 'class comment' }
 RG2ReadOnlyImageBackend >> classCommentAuthorFor: aRG2CommentDefinition [
 
 	^ aRG2CommentDefinition authorForStamp: (self realBehaviorFor: aRG2CommentDefinition parent) organization commentStamp.
 
 ]
 
-{ #category : #'class comment' }
+{ #category : 'class comment' }
 RG2ReadOnlyImageBackend >> classCommentContentFor: aRG2CommentDefinition [
 
 	^ (self realBehaviorFor: aRG2CommentDefinition parent) organization classComment.
 
 ]
 
-{ #category : #'class comment' }
+{ #category : 'class comment' }
 RG2ReadOnlyImageBackend >> classCommentTimeFor: aRG2CommentDefinition [
 
 	^ aRG2CommentDefinition timeForStamp: (self realBehaviorFor: aRG2CommentDefinition parent) organization commentStamp.
 ]
 
-{ #category : #trait }
+{ #category : 'trait' }
 RG2ReadOnlyImageBackend >> classTraitFor: aRG2TraitDefinition [
 
 	^ (self realBehaviorFor: aRG2TraitDefinition) classTrait asRing2MinimalDefinitionIn: aRG2TraitDefinition environment.
 ]
 
-{ #category : #class }
+{ #category : 'class' }
 RG2ReadOnlyImageBackend >> classVariablesFor: aRG2BehaviorDefinition do: aBlock [
 
 	| realClass |
@@ -89,13 +91,13 @@ RG2ReadOnlyImageBackend >> classVariablesFor: aRG2BehaviorDefinition do: aBlock 
 		aBlock value: def. ]
 ]
 
-{ #category : #class }
+{ #category : 'class' }
 RG2ReadOnlyImageBackend >> commentFor: aRG2BehaviorDefinition [
 
 	^  (self realBehaviorFor: aRG2BehaviorDefinition) asRing2MinimalCommentDefinitionIn: self environment
 ]
 
-{ #category : #'unresolved objects' }
+{ #category : 'unresolved objects' }
 RG2ReadOnlyImageBackend >> createUnresolvedClassGroupFor: aRG2BehaviorDefinition [ 
 
 	^ 	aRG2BehaviorDefinition isMeta
@@ -104,7 +106,7 @@ RG2ReadOnlyImageBackend >> createUnresolvedClassGroupFor: aRG2BehaviorDefinition
 
 ]
 
-{ #category : #package }
+{ #category : 'package' }
 RG2ReadOnlyImageBackend >> definedBehaviorsFor: aRG2PackageDefinition do: aBlock [
 
 	| realPackage |
@@ -118,20 +120,20 @@ RG2ReadOnlyImageBackend >> definedBehaviorsFor: aRG2PackageDefinition do: aBlock
 			aBlock value: def.]]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyImageBackend >> definitionFor: anObject [ 
 
 	^ self definitionFor: anObject ifAbsentRegister: [ anObject ensureRing2DefinitionIn: self environment ]
 
 ]
 
-{ #category : #'trait exclusion' }
+{ #category : 'trait exclusion' }
 RG2ReadOnlyImageBackend >> exclusionsFor: aRG2TraitExclusionDefinition do: aBlock [
 
 	^ (aRG2TraitExclusionDefinition propertyNamed: #realObject ifAbsent: [ self error: 'You can use only trait transformations generated directly by this backend' ]) exclusions do: [:each | aBlock value: each ]
 ]
 
-{ #category : #slot }
+{ #category : 'slot' }
 RG2ReadOnlyImageBackend >> expressionFor: aRG2UnknownSlotDefinition [
 
 	| realClass realSlot |
@@ -142,7 +144,7 @@ RG2ReadOnlyImageBackend >> expressionFor: aRG2UnknownSlotDefinition [
 
 ]
 
-{ #category : #package }
+{ #category : 'package' }
 RG2ReadOnlyImageBackend >> extensionMethodsFor: aRG2PackageDefinition do: aBlock [
 
 	| realPackage |
@@ -155,7 +157,7 @@ RG2ReadOnlyImageBackend >> extensionMethodsFor: aRG2PackageDefinition do: aBlock
 			aBlock value: def.]]
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 RG2ReadOnlyImageBackend >> globalVariablesFor: aRG2Environment do: aBlock [
 
 	Smalltalk globals associations do: [:each |
@@ -164,33 +166,33 @@ RG2ReadOnlyImageBackend >> globalVariablesFor: aRG2Environment do: aBlock [
 		aBlock value: def.].
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ReadOnlyImageBackend >> hasFullyResolved: aRG2Definition [
 
 	^ true
 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ReadOnlyImageBackend >> hasFullyUnresolved: aRG2Definition [		
 		
 	^ false
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ReadOnlyImageBackend >> hasResolved: aRG2Definition [
 
 	^ true
 
 ]
 
-{ #category : #method }
+{ #category : 'method' }
 RG2ReadOnlyImageBackend >> hasSourceCodeFor: aRG2MethodDefinition [ 
 
 	^ (self realMethodFor: aRG2MethodDefinition) sourceCode
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2ReadOnlyImageBackend >> initialize [
 
 	super initialize.
@@ -199,7 +201,7 @@ RG2ReadOnlyImageBackend >> initialize [
 	
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyImageBackend >> layoutFor: aRG2BehaviorDefinition [
 
 	| realClass realLayout def |
@@ -211,7 +213,7 @@ RG2ReadOnlyImageBackend >> layoutFor: aRG2BehaviorDefinition [
 	^ def
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyImageBackend >> localMethodsFor: aRG2BehaviorDefinition do: aBlock [
 
 	(self realBehaviorFor: aRG2BehaviorDefinition) localMethods do: [:method |
@@ -222,7 +224,7 @@ RG2ReadOnlyImageBackend >> localMethodsFor: aRG2BehaviorDefinition do: aBlock [
 
 ]
 
-{ #category : #'class description' }
+{ #category : 'class description' }
 RG2ReadOnlyImageBackend >> metaClassFor: aRG2BehaviorDefinition [
 
 	| realClass realMetaclass def |
@@ -235,7 +237,7 @@ RG2ReadOnlyImageBackend >> metaClassFor: aRG2BehaviorDefinition [
 
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyImageBackend >> metaclassFor: aRG2BehaviorDefinition [
 
 	| realBehavior realMetaclass def |
@@ -248,31 +250,31 @@ RG2ReadOnlyImageBackend >> metaclassFor: aRG2BehaviorDefinition [
 
 ]
 
-{ #category : #'metaclass trait' }
+{ #category : 'metaclass trait' }
 RG2ReadOnlyImageBackend >> metaclassTraitBaseTraitFor: aRG2MetaclassTraitDefinition [
 
 	^ (self realBehaviorFor: aRG2MetaclassTraitDefinition) baseTrait asRing2MinimalDefinitionIn: aRG2MetaclassTraitDefinition environment.
 ]
 
-{ #category : #method }
+{ #category : 'method' }
 RG2ReadOnlyImageBackend >> methodPackageFor: aRG2MethodDefinition [
 
 	^ (self realMethodFor: aRG2MethodDefinition) package asRing2MinimalDefinitionIn: aRG2MethodDefinition environment.
 ]
 
-{ #category : #general }
+{ #category : 'general' }
 RG2ReadOnlyImageBackend >> nameFor: aRG2Definition [
 
 	^ aRG2Definition pvtName
 ]
 
-{ #category : #class }
+{ #category : 'class' }
 RG2ReadOnlyImageBackend >> packageFor: aRG2BehaviorDefinition [
 
 	^ (self realBehaviorFor: aRG2BehaviorDefinition) package asRing2MinimalDefinitionIn: aRG2BehaviorDefinition environment.
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 RG2ReadOnlyImageBackend >> packagesFor: aRG2Environment do: aBlock [
 
 	RPackageOrganizer default packagesDo: [:each |
@@ -281,14 +283,14 @@ RG2ReadOnlyImageBackend >> packagesFor: aRG2Environment do: aBlock [
 		aBlock value: def.].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyImageBackend >> realBehaviorFor: aRG2BehaviorDefinition [
 
 	"TODO: should we cache the definition?"
 	^ Smalltalk classOrTraitNamed: aRG2BehaviorDefinition name asSymbol
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyImageBackend >> realMethodFor: aRG2MethodDefinition [
 
 	"TODO: should we cache the definition?"
@@ -297,25 +299,25 @@ RG2ReadOnlyImageBackend >> realMethodFor: aRG2MethodDefinition [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyImageBackend >> realPackageFor: aRG2PackageDefinition [
 
 	^ RPackageOrganizer default packageNamed: aRG2PackageDefinition name ifAbsent: [nil].
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ReadOnlyImageBackend >> resolvedPropertiesFor: aRG2Definition [
 
 	^ aRG2Definition pvtResolvableProperties collect: #key
 ]
 
-{ #category : #class }
+{ #category : 'class' }
 RG2ReadOnlyImageBackend >> sharedPoolsFor: aRG2Behavior do: aBlock [
 
 	^ aRG2Behavior pvtSharedPoolsDo: aBlock
 ]
 
-{ #category : #'pointer layout' }
+{ #category : 'pointer layout' }
 RG2ReadOnlyImageBackend >> slotsFor: aRG2LayoutDefinition do: aBlock [
 	| realClass |
 	realClass := self realBehaviorFor: aRG2LayoutDefinition parent.
@@ -328,20 +330,20 @@ RG2ReadOnlyImageBackend >> slotsFor: aRG2LayoutDefinition do: aBlock [
 			aBlock value: def ]
 ]
 
-{ #category : #method }
+{ #category : 'method' }
 RG2ReadOnlyImageBackend >> sourceCodeFor: aRG2MethodDefinition [ 
 
 	^ (self realMethodFor: aRG2MethodDefinition) sourceCode
 
 ]
 
-{ #category : #'trait transormation' }
+{ #category : 'trait transormation' }
 RG2ReadOnlyImageBackend >> subjectFor: aRG2TraitTransformationDefinition [
 
 	^ (aRG2TraitTransformationDefinition propertyNamed: #realObject ifAbsent: [ self error: 'You can use only trait transformations generated directly by this backend' ]) subject asRing2MinimalDefinitionIn: aRG2TraitTransformationDefinition environment
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyImageBackend >> superclassFor: aRG2BehaviorDefinition [
 
 	| realClass realSuperclass def |
@@ -355,7 +357,7 @@ RG2ReadOnlyImageBackend >> superclassFor: aRG2BehaviorDefinition [
 
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyImageBackend >> tagsForClass: aRG2BehaviorDefinition do: aBlock [
 
 	| realClass |
@@ -365,7 +367,7 @@ RG2ReadOnlyImageBackend >> tagsForClass: aRG2BehaviorDefinition do: aBlock [
 
 ]
 
-{ #category : #method }
+{ #category : 'method' }
 RG2ReadOnlyImageBackend >> tagsForMethod: aRG2MethodDefinition do: aBlock [
 
 	| realMethod |
@@ -374,26 +376,26 @@ RG2ReadOnlyImageBackend >> tagsForMethod: aRG2MethodDefinition do: aBlock [
 	{ realMethod protocol } do: aBlock.
 ]
 
-{ #category : #method }
+{ #category : 'method' }
 RG2ReadOnlyImageBackend >> tagsForMethodsFor: aRG2BehaviorDefinition do: aBlock [
 
 	(self realBehaviorFor: aRG2BehaviorDefinition) protocols do: aBlock
 
 ]
 
-{ #category : #method }
+{ #category : 'method' }
 RG2ReadOnlyImageBackend >> timeFor: aRG2MethodDefinition [
 
 	^ aRG2MethodDefinition timeForStamp: (self realMethodFor: aRG2MethodDefinition) stamp
 ]
 
-{ #category : #trait }
+{ #category : 'trait' }
 RG2ReadOnlyImageBackend >> traitCommentFor: aRG2BehaviorDefinition [
 
 	^  (self realBehaviorFor: aRG2BehaviorDefinition) asRing2MinimalCommentDefinitionIn: self environment
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyImageBackend >> traitCompositionFor: aRG2BehaviorDefinition [
 
 	| realClass realTraitComposition def |
@@ -406,13 +408,13 @@ RG2ReadOnlyImageBackend >> traitCompositionFor: aRG2BehaviorDefinition [
 
 ]
 
-{ #category : #trait }
+{ #category : 'trait' }
 RG2ReadOnlyImageBackend >> traitPackageFor: aRG2BehaviorDefinition [
 
 	^ (self realBehaviorFor: aRG2BehaviorDefinition) package asRing2MinimalDefinitionIn: aRG2BehaviorDefinition environment.
 ]
 
-{ #category : #'trait composition' }
+{ #category : 'trait composition' }
 RG2ReadOnlyImageBackend >> transformationsFor: aRG2TraitCompositionDefinition do: aBlock [
 
 	| realBehavior realTraitComposition |
@@ -429,7 +431,7 @@ RG2ReadOnlyImageBackend >> transformationsFor: aRG2TraitCompositionDefinition do
 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ReadOnlyImageBackend >> unresolvedPropertiesFor: aRG2Definition [
 
 	^ Dictionary new.

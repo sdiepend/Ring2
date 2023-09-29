@@ -3,23 +3,25 @@ I am the root class of the Ring meta-model.
 A Ring definition has a name, properties and knows its environment
 "
 Class {
-	#name : #RG2Definition,
-	#superclass : #Object,
+	#name : 'RG2Definition',
+	#superclass : 'Object',
 	#instVars : [
 		'properties',
 		'name',
 		'parent'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RG2Definition class >> asYetUnclassifiedProtocolName [
 
 	^ 'as yet unclassified' asSymbol
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RG2Definition class >> named: aString [
 
 	"create model in its own environment"
@@ -29,7 +31,7 @@ RG2Definition class >> named: aString [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RG2Definition class >> named: aName parent: aRG2Definition [
 
 	^self basicNew
@@ -39,7 +41,7 @@ RG2Definition class >> named: aName parent: aRG2Definition [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RG2Definition class >> parent: aRG2Definition [
 
 	^self basicNew
@@ -48,13 +50,13 @@ RG2Definition class >> parent: aRG2Definition [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RG2Definition class >> unnamed [
 
 	^self new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RG2Definition class >> unresolved [
 
 	^ self basicNew
@@ -62,7 +64,7 @@ RG2Definition class >> unresolved [
 		yourself.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RG2Definition class >> unresolvedNamed: aString withParent: aRG2Defintion [
 
 	^self basicNew
@@ -72,7 +74,7 @@ RG2Definition class >> unresolvedNamed: aString withParent: aRG2Defintion [
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RG2Definition class >> unresolvedWithParent: aRG2Defintion [
 
 	^self basicNew
@@ -81,35 +83,35 @@ RG2Definition class >> unresolvedWithParent: aRG2Defintion [
 		yourself
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2Definition >> addoptToParentStub [
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> announce: anAnnouncement [
 
 	self environment announcer announce: anAnnouncement
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> announcer [
 
 	^ self environment announcer
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 RG2Definition >> asRing2Definition [
 
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Definition >> ask [
 
 	^ self 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> authorForStamp: stamp [
 	
 	^ stamp isEmptyOrNil
@@ -117,19 +119,19 @@ RG2Definition >> authorForStamp: stamp [
 		ifFalse: [ stamp substrings first].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Definition >> backend [
 	
 	^ self environment backend
 ]
 
-{ #category : #merging }
+{ #category : 'merging' }
 RG2Definition >> canMergeSimplyWith: aRG2Definition [
 
 	^ (self resolvedProperties intersection: aRG2Definition resolvedProperties) isEmpty.
 ]
 
-{ #category : #merging }
+{ #category : 'merging' }
 RG2Definition >> canMergeSimplyWithoutName: aRG2Definition [
 
 	| intersection |
@@ -138,14 +140,14 @@ RG2Definition >> canMergeSimplyWithoutName: aRG2Definition [
 	^ intersection isEmpty or: [intersection = #(name)]
 ]
 
-{ #category : #merging }
+{ #category : 'merging' }
 RG2Definition >> canMergeWith: aRG2Definition [
 
 	^ (self nameOrNil == aRG2Definition nameOrNil)
 
 ]
 
-{ #category : #merging }
+{ #category : 'merging' }
 RG2Definition >> canMergeWith: aRG2Definition visited: visitedDefinitions [
 
 	(visitedDefinitions includes: self) ifTrue: [ ^ true ].
@@ -156,11 +158,11 @@ RG2Definition >> canMergeWith: aRG2Definition visited: visitedDefinitions [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> child: aChildDefinition renamedFrom: oldName to: newName [
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> compatibleWith: aRG2Definition [
 
 	(self class = aRG2Definition class)
@@ -171,7 +173,7 @@ RG2Definition >> compatibleWith: aRG2Definition [
 	^ (self name = aRG2Definition name)
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 RG2Definition >> copyForBehaviorDefinition [
 
 	"returns copy of the behavior model that contains only information related to the behavior 
@@ -180,7 +182,7 @@ RG2Definition >> copyForBehaviorDefinition [
 	^ self shallowCopy copyForBehaviorDefinitionPostCopy
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 RG2Definition >> copyForBehaviorDefinitionPostCopy [
 
 	super postCopy.
@@ -190,7 +192,7 @@ RG2Definition >> copyForBehaviorDefinitionPostCopy [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> copyForEnvironment: aRG2Environment [
 
 	| newDefinition |
@@ -202,13 +204,13 @@ RG2Definition >> copyForEnvironment: aRG2Environment [
 
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> copyPropertiesFrom: aRG2Definition [
 
 	properties := aRG2Definition properties copy.
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 RG2Definition >> copyWithParent: newParent [
 
 	"create copy of the definition and then assign the new parent"
@@ -218,20 +220,20 @@ RG2Definition >> copyWithParent: newParent [
 		yourself.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> correspondingObjectIn: aRG2Environment [
 
 	"find suitable object that corresponds to the definition in the oher environmnet aRG2Environment"
 	self subclassResponsibility.
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defaultClassStub [
 
 	^ RG2ClassDefinition unresolved
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defaultCommentStubIn: aRG2BehaviorDefinition [
 
 	^ RG2CommentDefinition unresolved
@@ -239,19 +241,19 @@ RG2Definition >> defaultCommentStubIn: aRG2BehaviorDefinition [
 		yourself.
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defaultEnvironmentStub [
 
 	^ RG2Environment unresolved
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defaultFixedLayoutStub [
 
 	^ RG2FixedLayoutDefinition unresolved
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defaultFixedLayoutStubIn: aRG2BehaviorDefinition [
 
 	^ RG2FixedLayoutDefinition unresolved
@@ -259,7 +261,7 @@ RG2Definition >> defaultFixedLayoutStubIn: aRG2BehaviorDefinition [
 		yourself.
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defaultPackageStubIn: aRG2Environment [
 
 	^ RG2PackageDefinition unresolved
@@ -267,19 +269,19 @@ RG2Definition >> defaultPackageStubIn: aRG2Environment [
 		yourself.
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2Definition >> defaultParentStub [
 
 	self shouldBeImplemented
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defaultTraitCompositionStub [
 
 	^ RG2TraitCompositionDefinition unresolved
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defaultTraitCompositionStubIn: aRG2BehaviorDefinition [
 
 	^ RG2TraitCompositionDefinition unresolved
@@ -287,7 +289,7 @@ RG2Definition >> defaultTraitCompositionStubIn: aRG2BehaviorDefinition [
 		yourself.
 ]
 
-{ #category : #'hierarchy-defaults' }
+{ #category : 'hierarchy-defaults' }
 RG2Definition >> defautlParentStub [
 
 	"creates parent lazily if the real parent is not known"
@@ -295,37 +297,37 @@ RG2Definition >> defautlParentStub [
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Definition >> environment [
 	
 	^ self propertyNamed: #environment ifAbsent: [ self parent environment ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> findSuitableParentIn: aRG2Environment [
 
 	^ self subclassResponsibility 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> fullCopy [
 
 	^ self copy.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Definition >> fullName [
 
 	^self name
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> hasProperties [
 
 	^ properties isEmptyOrNil not
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> hasPropertyNamed: propertyName [
 	"Answer <true> if the receiver contains the property named <propertyName>. "
 	
@@ -335,7 +337,7 @@ RG2Definition >> hasPropertyNamed: propertyName [
 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> hasResolved: propertySymbol [
 
 	^ self resolvedProperties includes: propertySymbol
@@ -344,7 +346,7 @@ RG2Definition >> hasResolved: propertySymbol [
 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> hasResolvedAll: aCollectionOfSymbols [
 
 	^ self resolvedProperties includesAll: aCollectionOfSymbols
@@ -353,13 +355,13 @@ RG2Definition >> hasResolvedAll: aCollectionOfSymbols [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2Definition >> hasResolvedName [		
 	
 	^ self hasResolved: #name
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> hasUnresolved: propertySymbol [
 
 	^ (self resolvedProperties includes: propertySymbol) not
@@ -368,7 +370,7 @@ RG2Definition >> hasUnresolved: propertySymbol [
 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> hasUnresolvedAll: aCollectionOfSymbols [
 
 	^ (self resolvedProperties includesAll: aCollectionOfSymbols) not
@@ -377,7 +379,7 @@ RG2Definition >> hasUnresolvedAll: aCollectionOfSymbols [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2Definition >> initialize [
 
 	super initialize.
@@ -387,7 +389,7 @@ RG2Definition >> initialize [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2Definition >> initializeUnresolved [
 
 	self propertyNamed: #resolved put: false. 
@@ -397,85 +399,85 @@ RG2Definition >> initializeUnresolved [
 
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isBehavior [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isClass [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isComment [
 
 	^false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isEnvironment [
 
 	^false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isGlobalVariable [
 
 	^false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isLayout [
 
 	^false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> isMeta [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isMetaclass [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isMetaclassTrait [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isMethod [
 
 	^false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isPackage [
 
 	^false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isProtocol [
 
 	^false
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> isRing2FullyResolved [
 
 	^ self backend hasFullyResolved: self
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> isRing2FullyUnresolved [		
 	
 	^ self backend hasFullyUnresolved: self 		
@@ -483,49 +485,49 @@ RG2Definition >> isRing2FullyUnresolved [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2Definition >> isRing2Object [
 
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2Definition >> isRing2Resolved [
 
 	^ self propertyNamed: #resolved ifAbsent: [ true ]
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isSlot [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isTraitAlias [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isTraitComposition [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isTraitExclusion [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isTraitTransformation [
 
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isVariable [
 
 	"is the definition a variable class?"
@@ -533,13 +535,13 @@ RG2Definition >> isVariable [
 	^ false
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Definition >> isVariableDefinition [
 
 	^ false
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> makeResolved [
 
 	self propertyNamed: #resolved put: true.
@@ -547,7 +549,7 @@ RG2Definition >> makeResolved [
 	name := self name.
 ]
 
-{ #category : #merging }
+{ #category : 'merging' }
 RG2Definition >> merge: aRG2Definition [
 
 	| sourceHasResolvedName |
@@ -565,13 +567,13 @@ RG2Definition >> merge: aRG2Definition [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Definition >> name [
 
 	^ (self backend nameFor: self) orDefaultForUnresolved 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Definition >> name: aString [
 
 	| oldName result |
@@ -582,7 +584,7 @@ RG2Definition >> name: aString [
 	^ result
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> nameOrNil [
 
 	"...if name is unresolved"
@@ -593,13 +595,13 @@ RG2Definition >> nameOrNil [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> package [
 
 	^ self parent package
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Definition >> parent [
 	"The parent of a class definition element: method, comment and variable is the class definition. This method retrieves the class that defines such element"
 	
@@ -610,7 +612,7 @@ RG2Definition >> parent [
 	^ parent.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Definition >> parent: aRG2BehaviorDefinition [
 
 	"If possible, do not use this method directly."
@@ -621,7 +623,7 @@ RG2Definition >> parent: aRG2BehaviorDefinition [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> postCopy [
 
 	super postCopy.
@@ -629,13 +631,13 @@ RG2Definition >> postCopy [
 	properties := properties copy.
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> properties [
 
 	^ properties ifNil:[ properties := IdentityDictionary new ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> propertyNamed: propertyName [ 
 	"Answer the value of the annotation named <annotationName>, or 
 	nil if the annotation is not defined for the receiver."
@@ -645,7 +647,7 @@ RG2Definition >> propertyNamed: propertyName [
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> propertyNamed: annotationName ifAbsent: exceptionBlock [ 
 	"Answer the value of the property named <annotationName>. If the 
 	property is not defined for the receiver, answer the result of 
@@ -659,7 +661,7 @@ RG2Definition >> propertyNamed: annotationName ifAbsent: exceptionBlock [
 			ifAbsent: [ exceptionBlock value ]
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> propertyNamed: annotationName ifAbsentPut: blockValue [ 
 
 	^self properties
@@ -667,7 +669,7 @@ RG2Definition >> propertyNamed: annotationName ifAbsentPut: blockValue [
 		ifAbsentPut: blockValue
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> propertyNamed: annotationName put: value [ 
 
 	self properties
@@ -675,7 +677,7 @@ RG2Definition >> propertyNamed: annotationName put: value [
 		put: value
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> propertyNames [
 	
 	self hasProperties
@@ -683,55 +685,55 @@ RG2Definition >> propertyNames [
 	^ properties keys
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Definition >> pvtFullyResolved [
 
 	^ (self pvtResolvableProperties collect: #value) allSatisfy: #isRing2FullyResolved
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Definition >> pvtFullyUnresolved [		
 		
 	^ (self pvtResolvableProperties collect: #value) noneSatisfy: #isRing2FullyResolved 
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Definition >> pvtName [
 
 	^ name
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Definition >> pvtName: aString [
 
 	name := aString
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2Definition >> pvtParent: aRG2Definition [
 
 	parent := aRG2Definition.
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Definition >> pvtResolvableProperties [
 
 	^ { #name -> name }.
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Definition >> pvtResolvedProperties [
 
 	^ self pvtResolvableProperties select: [:each | each value isRing2Resolved ] thenCollect: #key
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Definition >> pvtUnresolvedProperties [
 
 	^ self pvtResolvableProperties select: [:each | each value isRing2Resolved not ] thenCollect: #key
 ]
 
-{ #category : #properties }
+{ #category : 'properties' }
 RG2Definition >> removePropertyNamed: propertyName [ 
 	"Remove the annotation named <annotationName>. Fails quietly if there 
 	is no annotation with the given name."
@@ -740,13 +742,13 @@ RG2Definition >> removePropertyNamed: propertyName [
 		ifTrue:[ properties removeKey: propertyName ]
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> resolvedProperties [
 
 	^ (self backend resolvedPropertiesFor: self)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> timeForStamp: stamp [
 
 	^ stamp
@@ -758,25 +760,25 @@ RG2Definition >> timeForStamp: stamp [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Definition >> unresolvedName [
 
 	^ #unresolved
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2Definition >> unresolvedProperties [
 
 	^ (self backend unresolvedPropertiesFor: self)
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 RG2Definition >> unresolvedValue [
 
 	^ RG2UnresolvedValue new.
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 RG2Definition >> unresolvedValue: aDefaultValue [
 
 	^ RG2UnresolvedValue new

@@ -2,17 +2,19 @@
 RG2CommentDefinition is a first-class representation of class's comments
 "
 Class {
-	#name : #RG2CommentDefinition,
-	#superclass : #RG2ElementDefinition,
+	#name : 'RG2CommentDefinition',
+	#superclass : 'RG2ElementDefinition',
 	#instVars : [
 		'content',
 		'author',
 		'time'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2CommentDefinition >> addoptToParentStub [
 
 	super addoptToParentStub.
@@ -20,13 +22,13 @@ RG2CommentDefinition >> addoptToParentStub [
 	self environment backend createUnresolvedClassGroupFor: self parent
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2CommentDefinition >> author [
 
 	^ self backend forBehavior classCommentAuthorFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2CommentDefinition >> author: aString [
 
 	self backend forBehavior setClassCommentAuthorFor: self to: aString.
@@ -34,13 +36,13 @@ RG2CommentDefinition >> author: aString [
 	self announcer behaviorCommentModified: self parent.
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2CommentDefinition >> content [
 
 	^ self backend forBehavior classCommentContentFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2CommentDefinition >> content: aString [
 
 	self backend forBehavior setClassCommentContentFor: self to: aString.
@@ -48,37 +50,37 @@ RG2CommentDefinition >> content: aString [
 	self announcer behaviorCommentModified: self parent.
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2CommentDefinition >> defaultAuthor [
 
 	^ ''
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2CommentDefinition >> defaultContent [
 
 	^ ''
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2CommentDefinition >> defaultParentStub [
 
 	^ self defaultClassStub
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2CommentDefinition >> defaultTime [
 
 	^ DateAndTime new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2CommentDefinition >> fullName [
 	
 	^ (self parent name, ' comment') asSymbol
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2CommentDefinition >> initialize [
 
 	super initialize.
@@ -89,7 +91,7 @@ RG2CommentDefinition >> initialize [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2CommentDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -100,19 +102,19 @@ RG2CommentDefinition >> initializeUnresolved [
 	
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2CommentDefinition >> isComment [
 
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2CommentDefinition >> isEmptyOrNil [
 
 	^ self content isEmptyOrNil 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2CommentDefinition >> makeResolved [
 
 	super makeResolved.
@@ -122,7 +124,7 @@ RG2CommentDefinition >> makeResolved [
 	time := self time.
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2CommentDefinition >> printOn: aStream [ 
 
 	self parent name ifNotNil: [
@@ -131,31 +133,31 @@ RG2CommentDefinition >> printOn: aStream [
 	aStream nextPutAll: self name asString
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2CommentDefinition >> pvtAuthor [
 
 	^ author value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2CommentDefinition >> pvtAuthor: aString [
 
 	^ author := aString
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2CommentDefinition >> pvtContent [
 
 	^ content value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2CommentDefinition >> pvtContent: aString [
 
 	^ content := aString
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2CommentDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -167,31 +169,31 @@ RG2CommentDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2CommentDefinition >> pvtTime [
 
 	^ time value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2CommentDefinition >> pvtTime: aDateAndTime [
 
 	^ time := aDateAndTime
 ]
 
-{ #category : #'backward compatibility' }
+{ #category : 'backward compatibility' }
 RG2CommentDefinition >> sourceCode [
 
 	^ self content   
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2CommentDefinition >> time [
 
 	^ self backend forBehavior classCommentTimeFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2CommentDefinition >> time: aDateAndTime [
 
 	self backend forBehavior setClassCommentTimeFor: self to: aDateAndTime.

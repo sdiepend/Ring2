@@ -1,6 +1,6 @@
-Extension { #name : #PointerLayout }
+Extension { #name : 'PointerLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 PointerLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	self subclassResponsibility 

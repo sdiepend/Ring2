@@ -1,6 +1,6 @@
-Extension { #name : #TraitComposition }
+Extension { #name : 'TraitComposition' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 TraitComposition >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	

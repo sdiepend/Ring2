@@ -1,6 +1,6 @@
-Extension { #name : #ImmediateLayout }
+Extension { #name : 'ImmediateLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 ImmediateLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

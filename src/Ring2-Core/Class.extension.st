@@ -1,6 +1,6 @@
-Extension { #name : #Class }
+Extension { #name : 'Class' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 Class >> asRing2MinimalCommentDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: ('classComment:', self name) asSymbol ifAbsentRegister: [
@@ -9,7 +9,7 @@ Class >> asRing2MinimalCommentDefinitionIn: aRG2Environment [
 	
 ]
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 Class >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [
@@ -17,7 +17,7 @@ Class >> asRing2MinimalDefinitionIn: aRG2Environment [
 	
 ]
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 Class >> ensureRing2DefinitionIn: aRG2Environment [
 
 	^ aRG2Environment ask behaviors 

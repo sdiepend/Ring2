@@ -2,15 +2,17 @@
 RG2ClassDescriptionDefinition is the common parent for classes and metaclasses defining instance variables
 "
 Class {
-	#name : #RG2ClassDescriptionDefinition,
-	#superclass : #RG2BehaviorDefinition,
+	#name : 'RG2ClassDescriptionDefinition',
+	#superclass : 'RG2BehaviorDefinition',
 	#instVars : [
 		'layout'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> allSlots [
 
 	| superclassSlots |
@@ -20,7 +22,7 @@ RG2ClassDescriptionDefinition >> allSlots [
 	^ (superclassSlots, self layout allSlots) asArray.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> classVariablesString [
 	"Answer a string of my class variable names separated by spaces."
 
@@ -30,7 +32,7 @@ RG2ClassDescriptionDefinition >> classVariablesString [
 			separatedBy: [ stream space ] ]
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 RG2ClassDescriptionDefinition >> copyForBehaviorDefinitionPostCopy [
 
 	super copyForBehaviorDefinitionPostCopy.
@@ -42,20 +44,20 @@ RG2ClassDescriptionDefinition >> copyForBehaviorDefinitionPostCopy [
 
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2ClassDescriptionDefinition >> defaultMetaClass [
 
 	^ self environment backend createNewUnresolvedMetaclassFor: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> findSuitableParentIn: aRG2Environment [
 
 	^ aRG2Environment packages detect: [:package |
 		package name = self package name ] 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2ClassDescriptionDefinition >> initialize [
 
 	super initialize.
@@ -69,7 +71,7 @@ RG2ClassDescriptionDefinition >> initialize [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2ClassDescriptionDefinition >> initializeUnresolved [
 
 	super initializeUnresolved. 
@@ -80,18 +82,18 @@ RG2ClassDescriptionDefinition >> initializeUnresolved [
 "
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> instSize [
 
 	^ self allInstVarNames size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> instVarNames [
 	^ self layout instVarNames
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> instanceVariables: aCollectionOfSymbols [
 
 	"specify instance variable names"
@@ -108,7 +110,7 @@ RG2ClassDescriptionDefinition >> instanceVariables: aCollectionOfSymbols [
 		layout addSlot: (RG2InstanceVariableSlotDefinition named: instVarName asSymbol parent: self)].
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2ClassDescriptionDefinition >> instanceVariablesString [
 	"Answer a string of my instance variable names separated by spaces."
 
@@ -118,55 +120,55 @@ RG2ClassDescriptionDefinition >> instanceVariablesString [
 			separatedBy: [ stream space ] ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isBehavior [
 
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> isBits [
 
 	^ self layout isBitsLayout
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isBytes [
 
 	^ self layout isByteLayout 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isCompiledMethod [
 
 	^ self layout isCompiledMethodLayout 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isEphemeron [
 
 	^ self layout isEphemeronLayout
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isEphemeronClass [
 
 	^ self layout isEphemeronLayout 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isImmediateClass [
 
 	^ self layout isImmediateLayout  
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isPointers [
 
 	^ self isBits not
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> isVariable [
 
 	"is the definition a variable class?"
@@ -174,19 +176,19 @@ RG2ClassDescriptionDefinition >> isVariable [
 	^ self layout isVariableLayout
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isWeak [
 
 	^ self layout isWeakLayout
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDescriptionDefinition >> isWords [
 
 	^ self layout isWordLayout 
 ]
 
-{ #category : #'testing class hierarchy' }
+{ #category : 'testing class hierarchy' }
 RG2ClassDescriptionDefinition >> kindOfSubclass [
 	"Answer a String that is the keyword that describes the receiver's kind of subclass,
 	 either a regular subclass, a variableSubclass, a variableByteSubclass,
@@ -212,20 +214,20 @@ RG2ClassDescriptionDefinition >> kindOfSubclass [
 						ifFalse: [' subclass: ']]]
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDescriptionDefinition >> layout [
 
 	^ self backend forBehavior layoutFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDescriptionDefinition >> layout: aRG2LayoutDefinition [
 
 	self announceDefinitionChangeDuring: [ 
 		self backend forBehavior setLayoutFor: self to: aRG2LayoutDefinition ].
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ClassDescriptionDefinition >> makeResolved [
 
 	super makeResolved.
@@ -234,13 +236,13 @@ RG2ClassDescriptionDefinition >> makeResolved [
 
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2ClassDescriptionDefinition >> pvtLayout [
 
 	^ layout value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2ClassDescriptionDefinition >> pvtLayout: aRG2LayoutDefinition [
 
 	self environment verifyOwnership: aRG2LayoutDefinition.
@@ -248,7 +250,7 @@ RG2ClassDescriptionDefinition >> pvtLayout: aRG2LayoutDefinition [
 	^ layout := aRG2LayoutDefinition
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2ClassDescriptionDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -256,19 +258,19 @@ RG2ClassDescriptionDefinition >> pvtResolvableProperties [
      	}
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ClassDescriptionDefinition >> setNameFromSiblingIfNeeded [
 
 	self subclassResponsibility 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> sharedPools [
 
 	^ OrderedCollection new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDescriptionDefinition >> sharedPoolsString [
 	"Answer a string of my class variable names separated by spaces."
 
@@ -279,7 +281,7 @@ RG2ClassDescriptionDefinition >> sharedPoolsString [
 			separatedBy: [ stream space ] ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2ClassDescriptionDefinition >> slotDefinitionString [
 	"Answer a string that contains an executable description of my Slots"
 
@@ -297,13 +299,13 @@ RG2ClassDescriptionDefinition >> slotDefinitionString [
 
 ]
 
-{ #category : #slots }
+{ #category : 'slots' }
 RG2ClassDescriptionDefinition >> slots [		
 		
 	^ self layout slots 
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2ClassDescriptionDefinition >> storeOn: aStream [
 	aStream
 		nextPutAll: '(';
@@ -313,7 +315,7 @@ RG2ClassDescriptionDefinition >> storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #slots }
+{ #category : 'slots' }
 RG2ClassDescriptionDefinition >> usesSpecialSlot [
 	"return true if we define something else than InstanceVariableSlots"
 	^self slots anySatisfy: [ :each | each isSpecial ]

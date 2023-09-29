@@ -1,14 +1,16 @@
 Class {
-	#name : #RG2ReadOnlyJoinBackend,
-	#superclass : #RG2ReadOnlyBackend,
+	#name : 'RG2ReadOnlyJoinBackend',
+	#superclass : 'RG2ReadOnlyBackend',
 	#instVars : [
 		'environment1',
 		'environment2'
 	],
-	#category : 'Ring2-Core-Environment'
+	#category : 'Ring2-Core-Environment',
+	#package : 'Ring2-Core',
+	#tag : 'Environment'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyJoinBackend >> behaviorsFor: aRG2Environment do: aBlock [
 
 	| enumerated  |
@@ -31,7 +33,7 @@ RG2ReadOnlyJoinBackend >> behaviorsFor: aRG2Environment do: aBlock [
 			ifFalse: [ aBlock value: (self copyFor: each) ] ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyJoinBackend >> chooseFrom: aRG2Definition1 and: aRG2Definition2 [
 
 	| firstResolved |
@@ -52,34 +54,34 @@ RG2ReadOnlyJoinBackend >> chooseFrom: aRG2Definition1 and: aRG2Definition2 [
 		ifFalse: [ aRG2Definition2 ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyJoinBackend >> copyFor: aRG2Definition [
 
 	^ self definitionFor: aRG2Definition ifAbsentRegister: [
 		aRG2Definition copyForEnvironment: self environment].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2ReadOnlyJoinBackend >> environment1 [
 	^ environment1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2ReadOnlyJoinBackend >> environment1: anObject [
 	environment1 := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2ReadOnlyJoinBackend >> environment2 [
 	^ environment2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2ReadOnlyJoinBackend >> environment2: anObject [
 	environment2 := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ReadOnlyJoinBackend >> initialize [
 
 	super initialize.
@@ -88,7 +90,7 @@ RG2ReadOnlyJoinBackend >> initialize [
 	
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyJoinBackend >> layoutFor: aRG2BehaviorDefinition [
 
 	^ self operation: [ :backend :definition |
@@ -97,7 +99,7 @@ RG2ReadOnlyJoinBackend >> layoutFor: aRG2BehaviorDefinition [
 	
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyJoinBackend >> metaclassFor: aRG2BehaviorDefinition [
 
 	^ self operation: [ :backend :definition |
@@ -106,7 +108,7 @@ RG2ReadOnlyJoinBackend >> metaclassFor: aRG2BehaviorDefinition [
 	
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyJoinBackend >> operation: aBlock on: aRG2BehaviorDefinition [
 
 	"aBlock accepts backend and definition as arguments"
@@ -133,7 +135,7 @@ RG2ReadOnlyJoinBackend >> operation: aBlock on: aRG2BehaviorDefinition [
 
 ]
 
-{ #category : #environment }
+{ #category : 'environment' }
 RG2ReadOnlyJoinBackend >> packagesFor: aRG2Environment do: aBlock [
 
 	| enumerated |
@@ -156,7 +158,7 @@ RG2ReadOnlyJoinBackend >> packagesFor: aRG2Environment do: aBlock [
 			ifFalse: [ aBlock value: (self copyFor: each) ] ].
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyJoinBackend >> superclassFor: aRG2BehaviorDefinition [
 
 	^ self operation: [ :backend :definition |
@@ -169,7 +171,7 @@ RG2ReadOnlyJoinBackend >> superclassFor: aRG2BehaviorDefinition [
 
 ]
 
-{ #category : #behavior }
+{ #category : 'behavior' }
 RG2ReadOnlyJoinBackend >> traitCompositionFor: aRG2BehaviorDefinition [
 
 	^ self operation: [ :backend :definition |

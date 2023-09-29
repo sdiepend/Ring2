@@ -1,6 +1,6 @@
-Extension { #name : #WeakLayout }
+Extension { #name : 'WeakLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 WeakLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

@@ -2,23 +2,25 @@
 RG2TraitDefinition is the concrete representation of a trait (no class)
 "
 Class {
-	#name : #RG2TraitDefinition,
-	#superclass : #RG2TraitDescriptionDefinition,
+	#name : 'RG2TraitDefinition',
+	#superclass : 'RG2TraitDescriptionDefinition',
 	#instVars : [
 		'classTrait',
 		'comment',
 		'package'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2TraitDefinition >> baseTrait [
 
 	^ self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitDefinition >> category [
 
 	^ self tags 
@@ -31,7 +33,7 @@ RG2TraitDefinition >> category [
 	"todo"
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitDefinition >> category: aString [
 
 	| aTag |
@@ -51,31 +53,31 @@ RG2TraitDefinition >> category: aString [
 	self announcer behaviorRecategorized: self."
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2TraitDefinition >> classSide [
 
 	^ self classTrait
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitDefinition >> classTrait [
 
 	^ self backend forBehavior classTraitFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitDefinition >> classTrait: aRG2MetatraitDefinition [
 
 	self backend forBehavior setClassTraitFor: self to: aRG2MetatraitDefinition
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitDefinition >> comment [
 
 	^ self backend forBehavior traitCommentFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitDefinition >> comment: aRG2CommentDefinition [
 
 	self backend forBehavior setTraitCommentFor: self to: aRG2CommentDefinition.
@@ -83,19 +85,19 @@ RG2TraitDefinition >> comment: aRG2CommentDefinition [
 	self announcer behaviorCommentModified: self.
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2TraitDefinition >> defaultCategory [
 
 	^ nil
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2TraitDefinition >> defaultComment [
 
 	^ self defaultCommentStubIn: self
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2TraitDefinition >> defaultPackage [
 
 	^ self defaultPackageStubIn: self environment
@@ -103,7 +105,7 @@ RG2TraitDefinition >> defaultPackage [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDefinition >> definition [
 	"Answer a String that defines the receiver"
 
@@ -117,13 +119,13 @@ RG2TraitDefinition >> definition [
 				store: self category asString].
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2TraitDefinition >> hasComment [
 
 	^ self comment isEmptyOrNil not
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2TraitDefinition >> initialize [
 
 	super initialize.
@@ -134,7 +136,7 @@ RG2TraitDefinition >> initialize [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2TraitDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -145,12 +147,12 @@ RG2TraitDefinition >> initializeUnresolved [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDefinition >> instanceSide [
 	^ self baseTrait
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2TraitDefinition >> makeResolved [
 
 	self resolveName.
@@ -162,13 +164,13 @@ RG2TraitDefinition >> makeResolved [
 	
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitDefinition >> package [
 
 	^ self backend forBehavior traitPackageFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitDefinition >> package: aRG2Package [
 
 	self announceDefinitionChangeDuring: [ 
@@ -177,13 +179,13 @@ RG2TraitDefinition >> package: aRG2Package [
 		aRG2Package addDefinedBehavior: self. ].
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2TraitDefinition >> pvtClassTrait [
 
 	^ classTrait value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2TraitDefinition >> pvtClassTrait: aRG2MetatraitDefinition [
 
 	self environment verifyOwnership: aRG2MetatraitDefinition.
@@ -191,13 +193,13 @@ RG2TraitDefinition >> pvtClassTrait: aRG2MetatraitDefinition [
 	^ classTrait := aRG2MetatraitDefinition
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitDefinition >> pvtComment [
 
 	^ comment value
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitDefinition >> pvtComment: aRG2CommentDefinition [
 
 	self environment verifyOwnership: aRG2CommentDefinition.
@@ -205,13 +207,13 @@ RG2TraitDefinition >> pvtComment: aRG2CommentDefinition [
 	^ comment := aRG2CommentDefinition
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitDefinition >> pvtPackage [
 
 	^ package value
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitDefinition >> pvtPackage: aRG2Package [
 
 	self environment verifyOwnership: aRG2Package.
@@ -219,7 +221,7 @@ RG2TraitDefinition >> pvtPackage: aRG2Package [
 	^ package := aRG2Package
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2TraitDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -231,37 +233,37 @@ RG2TraitDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDefinition >> referencedBehaviors [
 
 	^ super referencedBehaviors, {self classTrait}.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDefinition >> referencedPackages [
 
 	^ Array with: package
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2TraitDefinition >> setNameFromSiblingIfNeeded [
 
 	(self hasUnresolved: #name)
 		ifTrue: [ name := (self classTrait name withoutSuffix: ' classTrait') asSymbol ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDefinition >> sibling [
 
 	^ self classTrait
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDefinition >> theMetaClass [
 	^ self classTrait
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitDefinition >> traitTransformationString [
 
 	^ self name

@@ -1,6 +1,6 @@
-Extension { #name : #EphemeronLayout }
+Extension { #name : 'EphemeronLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 EphemeronLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

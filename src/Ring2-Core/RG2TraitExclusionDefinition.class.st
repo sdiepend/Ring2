@@ -1,20 +1,22 @@
 Class {
-	#name : #RG2TraitExclusionDefinition,
-	#superclass : #RG2TraitTransformationDefinition,
+	#name : 'RG2TraitExclusionDefinition',
+	#superclass : 'RG2TraitTransformationDefinition',
 	#instVars : [
 		'exclusions'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitExclusionDefinition >> addExclusion: aSymbol [ 
 
 	self parent parent announceDefinitionChangeDuring: [ 
 		self backend forBehavior addExclusion: aSymbol to: self. ].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitExclusionDefinition >> cleanExclusions [
 
 	self parent parent announceDefinitionChangeDuring: [ 
@@ -22,13 +24,13 @@ RG2TraitExclusionDefinition >> cleanExclusions [
 	
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2TraitExclusionDefinition >> defaultExclusions [
 
 	^ OrderedCollection new
 ]
 
-{ #category : #'queries - exclusions' }
+{ #category : 'queries - exclusions' }
 RG2TraitExclusionDefinition >> exclusions [
 
 	| allExclusions |
@@ -38,13 +40,13 @@ RG2TraitExclusionDefinition >> exclusions [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitExclusionDefinition >> exclusionsDo: aBlock [
 
 	self backend forBehavior exclusionsFor: self do: aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2TraitExclusionDefinition >> initialize [
 
 	super initialize.
@@ -52,7 +54,7 @@ RG2TraitExclusionDefinition >> initialize [
 	exclusions := self unresolvedValue: self defaultExclusions.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2TraitExclusionDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -60,13 +62,13 @@ RG2TraitExclusionDefinition >> initializeUnresolved [
 	exclusions := self unresolvedValue: self defaultExclusions.
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2TraitExclusionDefinition >> isTraitExclusion [
 
 	^ true
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2TraitExclusionDefinition >> makeResolved [
 
 	super makeResolved.
@@ -75,13 +77,13 @@ RG2TraitExclusionDefinition >> makeResolved [
 
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2TraitExclusionDefinition >> methods [
 
 	^ self subject methods reject: [ :each | self exclusions includes: each name  ]
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitExclusionDefinition >> pvtAddExclusion: aSymbol [
 
 
@@ -91,25 +93,25 @@ RG2TraitExclusionDefinition >> pvtAddExclusion: aSymbol [
 	exclusions add: aSymbol.	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitExclusionDefinition >> pvtCleanExclusions [
 
 	exclusions := self defaultExclusions.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitExclusionDefinition >> pvtExclusionsDo: aBlock [
 
 	exclusions value do: aBlock
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitExclusionDefinition >> pvtRemoveExclusion: aSymbol [
 
 	exclusions remove: aSymbol.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitExclusionDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -119,14 +121,14 @@ RG2TraitExclusionDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitExclusionDefinition >> removeExclusion: aSymbol [
 
 	self parent parent announceDefinitionChangeDuring: [ 
 		self backend forBehavior removeExclusion: aSymbol from: self. ].
 ]
 
-{ #category : #traits }
+{ #category : 'traits' }
 RG2TraitExclusionDefinition >> traitCompositionString [
 
 	^ String streamContents: [:aStream |	
@@ -141,7 +143,7 @@ RG2TraitExclusionDefinition >> traitCompositionString [
 	aStream nextPut: $}].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitExclusionDefinition >> traitTransformationString [
 
 	^ String streamContents: [:aStream |	

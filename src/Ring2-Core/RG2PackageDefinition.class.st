@@ -5,35 +5,37 @@ A package can also know in which package is defined
 
 "
 Class {
-	#name : #RG2PackageDefinition,
-	#superclass : #RG2Definition,
+	#name : 'RG2PackageDefinition',
+	#superclass : 'RG2Definition',
 	#instVars : [
 		'definedBehaviors',
 		'extensionMethods',
 		'tagsForClasses'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> addClassTag: sSymbol [
 
 	self backend forPackage addClassTag: sSymbol to: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> addDefinedBehavior: aRG2BehaviorDefinition [
 
 	self backend forPackage addDefinedBehavior: aRG2BehaviorDefinition to: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> addExtensionMethod: aRG2MethodDefinition [ 
 
 	self backend forPackage addExtensionMethod: aRG2MethodDefinition to: self
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2PackageDefinition >> addoptToParentStub [
 
 	self isRing2Resolved ifFalse: [ ^ self ].
@@ -43,88 +45,88 @@ RG2PackageDefinition >> addoptToParentStub [
 	^ self parent addPackage: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> categories [
 	
 	^ self definedBehaviors collect: #category as: Set
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> categoryName [
 
 	^ self name 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> classNames [
 
 	^ self classes collect: #name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> classes [
 	"Retrieves a collection of classes defined in the receiver and classes holding extension methods"
 		
 	^self definedClassesOnly, self extendedClasses 
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 RG2PackageDefinition >> classesTaggedWith: aSymbol [
 
 	^ self definedBehaviors select: [ :each | each isTaggedWith: aSymbol ]
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> cleanDefinedBehaviors [
 
 	self backend forPackage cleanDefinedBehaviorsFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> cleanExtensionMethods [
 
 	self backend forPackage cleanExtensionMethodsFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> cleanTagsForClasses [
 
 	self backend forPackage cleanTagsForClassesFor: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2PackageDefinition >> correspondingObjectIn: aRG2Environment [		
 		
 	^ aRG2Environment ask packageNamed: self name.  
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2PackageDefinition >> defaultDefinedBehaviors [
 
 	^ Set new
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2PackageDefinition >> defaultExtensionMethods [
 
 	^ Set new
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2PackageDefinition >> defaultParentStub [
 
 	^ RG2Environment new
 		yourself.
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2PackageDefinition >> defaultTagsForClasses [
 
 	^ Set new
 ]
 
-{ #category : #'queries - behaviors' }
+{ #category : 'queries - behaviors' }
 RG2PackageDefinition >> definedBehaviors [
 
 	| allDefinedBehaviors |
@@ -134,38 +136,38 @@ RG2PackageDefinition >> definedBehaviors [
 	
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> definedBehaviorsDo: aBlock [
 
 	self backend forPackage definedBehaviorsFor: self do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> definedClassNames [
 
 	^ self definedClassesOnly collect: #name 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> definedClasses [
 
 	^ self definedBehaviors
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2PackageDefinition >> definedClassesOnly [
 
 	^ self definedBehaviors select: #isClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> definedTraits [
 	"Retrieves the traits defined in the receiver"
 
 	^self definedBehaviors select: #isTrait
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> extendedBehaviors [
 	
 	^ ((self extensionMethods collect: #parent) collect: [:behavior |
@@ -174,32 +176,32 @@ RG2PackageDefinition >> extendedBehaviors [
 			ifFalse: [ behavior baseClass]] as: IdentitySet) asArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> extendedClasses [
 	
 	^ self extendedBehaviors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> extendedClassesAndTraits [
 	
 	^ self extendedBehaviors
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> extendedSelectors [
 	"Retrieves the names of the methods"
 	
 	^ self extensionMethods collect: #selector
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> extendedTraits [
 	
 	^ (self extensionMethods collect: #parent) select: #isTrait
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> extensionMethods [
 
 	| allMethods |
@@ -209,19 +211,19 @@ RG2PackageDefinition >> extensionMethods [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> extensionMethodsDo: aBlock [
 
 	self backend forPackage extensionMethodsFor: self do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> findSuitableParentIn: aRG2Environment [
 
 	^ aRG2Environment 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2PackageDefinition >> initialize [
 
 	super initialize.
@@ -232,7 +234,7 @@ RG2PackageDefinition >> initialize [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2PackageDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -243,13 +245,13 @@ RG2PackageDefinition >> initializeUnresolved [
 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2PackageDefinition >> isPackage [
 
 	^true
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2PackageDefinition >> makeResolved [
 
 	super makeResolved.
@@ -260,7 +262,7 @@ RG2PackageDefinition >> makeResolved [
 
 ]
 
-{ #category : #merging }
+{ #category : 'merging' }
 RG2PackageDefinition >> merge: aRG2Package [
 
 	super merge: aRG2Package.
@@ -279,7 +281,7 @@ RG2PackageDefinition >> merge: aRG2Package [
 	"TODO:extension methods"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> methods [
 	"Retrieves all the methods defined in the receiver. 
 	#methods holds the methods of defined classes"
@@ -287,7 +289,7 @@ RG2PackageDefinition >> methods [
 	^ (self definedBehaviors flatCollect: #methods), self extensionMethods 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> name: aString [
 
 	| oldName |
@@ -301,13 +303,13 @@ RG2PackageDefinition >> name: aString [
 			newName: aString)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2PackageDefinition >> package [
 
 	^ self
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2PackageDefinition >> printOn: aStream [
 	aStream
 		nextPutAll: self class name;
@@ -316,7 +318,7 @@ RG2PackageDefinition >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtAddClassTag: aSymbol [
 	
 	tagsForClasses isRing2Resolved ifFalse: [ 
@@ -326,7 +328,7 @@ RG2PackageDefinition >> pvtAddClassTag: aSymbol [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtAddDefinedBehavior: aRG2BehaviorDefinition [
 
 	self environment verifyOwnership: aRG2BehaviorDefinition.
@@ -338,7 +340,7 @@ RG2PackageDefinition >> pvtAddDefinedBehavior: aRG2BehaviorDefinition [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtAddExtensionMethod: aMethodDefinition [
 
 	self environment verifyOwnership: aMethodDefinition.
@@ -353,7 +355,7 @@ RG2PackageDefinition >> pvtAddExtensionMethod: aMethodDefinition [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtCleanDefinedBehaviors [
 
 	definedBehaviors := self defaultDefinedBehaviors.
@@ -363,7 +365,7 @@ RG2PackageDefinition >> pvtCleanDefinedBehaviors [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtCleanExtensionMethods [
 
 	extensionMethods := self defaultExtensionMethods.
@@ -373,7 +375,7 @@ RG2PackageDefinition >> pvtCleanExtensionMethods [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtCleanTagsForClasses [
 
 	tagsForClasses := self defaultTagsForClasses.
@@ -383,19 +385,19 @@ RG2PackageDefinition >> pvtCleanTagsForClasses [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtDefinedBehaviorsDo: aBlock [
 
 	^ definedBehaviors value do: aBlock
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtExtensionMethodsDo: aBlock [
 
 	^ extensionMethods value do: aBlock
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtRemoveClassTag: aSymbol [
 	
 	tagsForClasses remove: aSymbol.
@@ -405,7 +407,7 @@ RG2PackageDefinition >> pvtRemoveClassTag: aSymbol [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtRemoveDefinedBehavior: aRG2BehaviorDefinition [
 
 	self environment verifyOwnership: aRG2BehaviorDefinition.
@@ -417,7 +419,7 @@ RG2PackageDefinition >> pvtRemoveDefinedBehavior: aRG2BehaviorDefinition [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtRemoveExtensionMethod: aRG2MethodDefinition [
 
 	self environment verifyOwnership: aRG2MethodDefinition.
@@ -429,7 +431,7 @@ RG2PackageDefinition >> pvtRemoveExtensionMethod: aRG2MethodDefinition [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -441,31 +443,31 @@ RG2PackageDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2PackageDefinition >> pvtTagsForClassesDo: aBlock [
 
 	^ tagsForClasses value do: aBlock
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> removeClassTag: aSymbol [
 
 	self backend forPackage removeClassTag: aSymbol from: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> removeDefinedBehavior: aRG2BehaviorDefinition [
 
 	self backend forPackage removeDefinedBehavior: aRG2BehaviorDefinition from: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> removeExtensionMethod: aRG2MethodDefinition [ 
 
 	self backend forPackage removeExtensionMethod: aRG2MethodDefinition from: self
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 RG2PackageDefinition >> tagsForClasses [
 	"Retrieves the traits defined in the receiver"
 
@@ -476,13 +478,13 @@ RG2PackageDefinition >> tagsForClasses [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PackageDefinition >> tagsForClassesDo: aBlock [
 
 	self backend forPackage tagsForClassesFor: self do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2PackageDefinition >> traits [
 	"Retrieves a collection of classes defined in the receiver and classes holding extension methods"
 		

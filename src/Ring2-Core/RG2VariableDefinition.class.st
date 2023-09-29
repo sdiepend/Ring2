@@ -2,42 +2,44 @@
 A variable definition
 "
 Class {
-	#name : #RG2VariableDefinition,
-	#superclass : #RG2ElementDefinition,
-	#category : 'Ring2-Core-Kernel'
+	#name : 'RG2VariableDefinition',
+	#superclass : 'RG2ElementDefinition',
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2VariableDefinition >> isClassInstanceVariable [
 
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2VariableDefinition >> isClassVariable [
 
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2VariableDefinition >> isPoolVariable [
 
 	^false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2VariableDefinition >> isSpecial [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2VariableDefinition >> isVariableDefinition [
 
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2VariableDefinition >> name: aString [
 
 	self parent announceDefinitionChangeDuring: [ 

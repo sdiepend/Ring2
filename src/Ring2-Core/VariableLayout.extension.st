@@ -1,6 +1,6 @@
-Extension { #name : #VariableLayout }
+Extension { #name : 'VariableLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 VariableLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

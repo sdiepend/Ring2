@@ -7,8 +7,8 @@ Instance Variables
 	superclass:		<Object>
 "
 Class {
-	#name : #RG2BehaviorDefinition,
-	#superclass : #RG2Definition,
+	#name : 'RG2BehaviorDefinition',
+	#superclass : 'RG2Definition',
 	#instVars : [
 		'superclass',
 		'localMethods',
@@ -18,22 +18,24 @@ Class {
 		'tagsForMethods',
 		'tags'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition class >> named: aString [
 
 	^ super named: aString asSymbol
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition class >> named: aString parent: aRG2Definition [
 
 	^ super named: aString asSymbol parent: aRG2Definition
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> addLocalMethod: aRG2MethodDefinition [ 
 
 	self backend forBehavior addLocalMethod: aRG2MethodDefinition to: self.
@@ -42,21 +44,21 @@ RG2BehaviorDefinition >> addLocalMethod: aRG2MethodDefinition [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> addMethodTag: aSymbol [ 
 
 	self announceDefinitionChangeDuring: [ 
 		self backend forBehavior addMethodTag: aSymbol to: self. ].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> addProtocol: aSymbol [ 
 
 	self addMethodTag: aSymbol
 
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2BehaviorDefinition >> addoptToParentStub [
 
 	| aPackage |
@@ -71,7 +73,7 @@ RG2BehaviorDefinition >> addoptToParentStub [
 
 ]
 
-{ #category : #'queries - other' }
+{ #category : 'queries - other' }
 RG2BehaviorDefinition >> allInstVarNames [
 	"Answer an Array of the names of the receiver's instance variables. The 
 	Array ordering is the order in which the variables are stored and 
@@ -84,13 +86,13 @@ RG2BehaviorDefinition >> allInstVarNames [
 	^vars
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> allSlots [
 
 	^ {  }
 ]
 
-{ #category : #announcements }
+{ #category : 'announcements' }
 RG2BehaviorDefinition >> announceDefinitionChangeDuring: aBlock [
 
 	| oldVersion |
@@ -109,25 +111,25 @@ RG2BehaviorDefinition >> announceDefinitionChangeDuring: aBlock [
 	
 ]
 
-{ #category : #asYetUnclassified }
+{ #category : 'asYetUnclassified' }
 RG2BehaviorDefinition >> asYetUnclassifiedProtocolName [
 
 	^ 'as yet unclassified' asSymbol
 ]
 
-{ #category : #'queries - other' }
+{ #category : 'queries - other' }
 RG2BehaviorDefinition >> baseBehavior [
 
 	^ self 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> baseClass [
 
 	^ self.
 ]
 
-{ #category : #binding }
+{ #category : 'binding' }
 RG2BehaviorDefinition >> bindingOf: varName [
 	"Answer the binding of some variable resolved in the scope of the receiver"
 
@@ -136,7 +138,7 @@ RG2BehaviorDefinition >> bindingOf: varName [
 		ifTrue: [ nil ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2BehaviorDefinition >> canMergeWith: aRG2Definition visited: visitedDefinitions [
 
 	| newVisited |
@@ -158,7 +160,7 @@ RG2BehaviorDefinition >> canMergeWith: aRG2Definition visited: visitedDefinition
 	^ true.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2BehaviorDefinition >> category [
 
 	"return only because of tests thet use RG2BehaviorDefinition directly"
@@ -166,33 +168,33 @@ RG2BehaviorDefinition >> category [
 	^ String new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> classSide [
 
 	^ self
 ]
 
-{ #category : #'accessing instances and variables' }
+{ #category : 'accessing instances and variables' }
 RG2BehaviorDefinition >> classVarNames [
 	"Answer a collection of the receiver's class variable names."
 
 	^#()
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> classVariableDefinitionString [
 
 	"TODO !"
 	^ ''
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> classVariablesBindings [
 
 	^ self propertyNamed: #classVariablesBindings ifAbsentPut: [ IdentityDictionary new.]
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> cleanLocalMethods [
 
 	| oldMethods |
@@ -208,32 +210,32 @@ RG2BehaviorDefinition >> cleanLocalMethods [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> cleanProtocols [
 	
 	self cleanTagsForMethods
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> cleanTags [
 
 	self announceDefinitionChangeDuring: [ 
 		self cleanTagsWithoutAnnouncemnt ].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> cleanTagsForMethods [
 
 	self backend forPackage cleanTagsForMethodsFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> cleanTagsWithoutAnnouncemnt [
 
 	self backend forBehavior cleanClassTagsFor: self.
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 RG2BehaviorDefinition >> compile: aSourceCode classified: aProtocolName [
 
 	| newMethod selector originalMethod |
@@ -251,13 +253,13 @@ RG2BehaviorDefinition >> compile: aSourceCode classified: aProtocolName [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> compiler [
 
 	^ self class compiler
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 RG2BehaviorDefinition >> copyForBehaviorDefinitionPostCopy [
 
 	super copyForBehaviorDefinitionPostCopy.
@@ -270,7 +272,7 @@ RG2BehaviorDefinition >> copyForBehaviorDefinitionPostCopy [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> correspondingObjectIn: aRG2Environment [
 
 	(self isRing2Resolved not and: ((self hasPropertyNamed: #creator) and: [ self hasPropertyNamed: #role])) ifTrue: [ 
@@ -308,55 +310,55 @@ RG2BehaviorDefinition >> correspondingObjectIn: aRG2Environment [
 	^ aRG2Environment ask behaviorNamed: self name.  
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2BehaviorDefinition >> defaultLayout [
 
 	^ self defaultFixedLayoutStubIn: self.
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2BehaviorDefinition >> defaultLocalMethods [
 
 	^ Set new
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2BehaviorDefinition >> defaultParentStub [
 
 	^ self defaultEnvironmentStub
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2BehaviorDefinition >> defaultProtocols [
 
 	^ Set new
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2BehaviorDefinition >> defaultTags [
 
 	^ Set new
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2BehaviorDefinition >> defaultTagsForMethods [
 
 	^ Set new
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2BehaviorDefinition >> defaultTraitComposition [
 
 	^ self defaultTraitCompositionStubIn: self.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2BehaviorDefinition >> definitionForNautilus [
 
 	^ self name asString
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2BehaviorDefinition >> ensureLocalMethodNamed: aSymbol [
 
 	^ self localMethodNamed: aSymbol ifAbsent: [ 
@@ -366,7 +368,7 @@ RG2BehaviorDefinition >> ensureLocalMethodNamed: aSymbol [
 		newMethod].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> ensureMethodTagNamed: aSymbol [
 
 	^ self tagsForMethods detect: [ :each | each asSymbol = aSymbol ] ifNone: [ 
@@ -374,38 +376,38 @@ RG2BehaviorDefinition >> ensureMethodTagNamed: aSymbol [
 		aSymbol ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> ensureProtocolNamed: aSymbol [
  
 	^ self ensureMethodTagNamed: aSymbol
 ]
 
-{ #category : #documentation }
+{ #category : 'documentation' }
 RG2BehaviorDefinition >> extensions [
 
 	^ self localMethods select: [ :each | each package ~= self package ]
 ]
 
-{ #category : #'queries - testing' }
+{ #category : 'queries - testing' }
 RG2BehaviorDefinition >> hasMethods [
 	"validates the existance of methods"
 
 	^ self methods notEmpty
 ]
 
-{ #category : #'queries - testing' }
+{ #category : 'queries - testing' }
 RG2BehaviorDefinition >> hasTraitComposition [
 
 	^	self traitComposition transformations isEmpty not
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2BehaviorDefinition >> includesSelector: aString [
 
 	^ self selectors includes: aString
 ]
 
-{ #category : #'testing class hierarchy' }
+{ #category : 'testing class hierarchy' }
 RG2BehaviorDefinition >> inheritsFrom: aClass [ 
 	"Answer whether the argument, aClass, is on the receiver's superclass 
 	chain."
@@ -419,7 +421,7 @@ RG2BehaviorDefinition >> inheritsFrom: aClass [
 	^false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2BehaviorDefinition >> initialize [
 
 	super initialize.
@@ -434,7 +436,7 @@ RG2BehaviorDefinition >> initialize [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2BehaviorDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -448,43 +450,43 @@ RG2BehaviorDefinition >> initializeUnresolved [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> instSize [
 
 	^ 0
 ]
 
-{ #category : #'queries - other' }
+{ #category : 'queries - other' }
 RG2BehaviorDefinition >> instVarNames [
 
 	^ Array new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> instanceSide [
 	^ self 
 ]
 
-{ #category : #'queries - testing' }
+{ #category : 'queries - testing' }
 RG2BehaviorDefinition >> isMeta [
 	"By default a non-meta class is considered"
 
 	^false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> isReferencedIn: aRG2MethodDefinition [ 
 
 	^ (aRG2MethodDefinition ast variableNodes select: #isGlobal) anySatisfy: [ :each | each name = self name ] 
 ]
 
-{ #category : #'queries - testing' }
+{ #category : 'queries - testing' }
 RG2BehaviorDefinition >> isRootInEnvironment [		
 		
 	^ self superclass == self or: [ self superclass isNil ] 
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2BehaviorDefinition >> localMethodNamed: aSymbol ifAbsent: aBlock [
 
 	self localMethodsDo: [ :each | (each name = aSymbol) ifTrue: [^ each]].
@@ -492,7 +494,7 @@ RG2BehaviorDefinition >> localMethodNamed: aSymbol ifAbsent: aBlock [
 	^ aBlock value.
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2BehaviorDefinition >> localMethods [
 
 	| methods |
@@ -502,19 +504,19 @@ RG2BehaviorDefinition >> localMethods [
 	^ methods asArray
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> localMethodsDo: aBlock [
 
 	self backend forBehavior localMethodsFor: self do: aBlock
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2BehaviorDefinition >> localSelectors [
 
 	^ self localMethods collect: #name
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2BehaviorDefinition >> makeResolved [
 
 	super makeResolved.
@@ -529,13 +531,13 @@ RG2BehaviorDefinition >> makeResolved [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> metaclass [
 
 	^ self backend forBehavior metaclassFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> metaclass: aRG2MetaclassDefinition [
 
 	self backend forBehavior setMetaclassFor: self to: aRG2MetaclassDefinition.
@@ -543,7 +545,7 @@ RG2BehaviorDefinition >> metaclass: aRG2MetaclassDefinition [
 
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2BehaviorDefinition >> methodNamed: aSymbol [
 
 	| allMethods |
@@ -552,7 +554,7 @@ RG2BehaviorDefinition >> methodNamed: aSymbol [
 	^ nil
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2BehaviorDefinition >> methods [
 
 	| methodsFromTraits methodsDict |
@@ -568,13 +570,13 @@ RG2BehaviorDefinition >> methods [
 
 ]
 
-{ #category : #'queries - tags' }
+{ #category : 'queries - tags' }
 RG2BehaviorDefinition >> methodsTaggedWith: aSymbol [
 
 	^ self localMethods select: [ :each | each isTaggedWith: aSymbol ]
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> name: aString [
 
 	| oldName subclassesWithOldDefinitions |
@@ -595,12 +597,12 @@ RG2BehaviorDefinition >> name: aString [
 		self announcer behaviorParentRenamed: assoc key from: oldName ].
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2BehaviorDefinition >> printOn: aStream [ 
 	aStream nextPutAll: self name
 ]
 
-{ #category : #'queries - protocols' }
+{ #category : 'queries - protocols' }
 RG2BehaviorDefinition >> protocols [
 
 	| methodTags |
@@ -616,7 +618,7 @@ RG2BehaviorDefinition >> protocols [
 
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtAddLocalMethod: aRG2MethodDefinition [
 
 	self environment verifyOwnership: aRG2MethodDefinition.
@@ -634,7 +636,7 @@ RG2BehaviorDefinition >> pvtAddLocalMethod: aRG2MethodDefinition [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtAddMethodTag: aSymbol [
 	
 	tagsForMethods isRing2Resolved ifFalse: [ 
@@ -644,14 +646,14 @@ RG2BehaviorDefinition >> pvtAddMethodTag: aSymbol [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtCleanLocalMethods [
 
 	localMethods := self defaultLocalMethods.
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtCleanTags [
 
 	tags := self defaultTags.
@@ -661,7 +663,7 @@ RG2BehaviorDefinition >> pvtCleanTags [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtCleanTagsForMethods [
 
 	tagsForMethods := self defaultTagsForMethods.
@@ -671,26 +673,26 @@ RG2BehaviorDefinition >> pvtCleanTagsForMethods [
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2BehaviorDefinition >> pvtLocalMethods: aCollection [
 
 	"use only for low-level copying"
 	localMethods := aCollection
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtLocalMethodsDo: aBlock [
 
 	^ localMethods value do: aBlock
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtMetaclass [
 
 	^ metaclass value
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtMetaclass: aRG2MetaclassDefinition [
 
 	self environment verifyOwnership: aRG2MetaclassDefinition.
@@ -698,7 +700,7 @@ RG2BehaviorDefinition >> pvtMetaclass: aRG2MetaclassDefinition [
 	^ metaclass := aRG2MetaclassDefinition
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtRemoveLocalMethod: aRG2MethodDefinition [
 
 	self environment verifyOwnership: aRG2MethodDefinition.
@@ -708,7 +710,7 @@ RG2BehaviorDefinition >> pvtRemoveLocalMethod: aRG2MethodDefinition [
 
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtRemoveMethodTag: aSymbol [
 	
 	tagsForMethods remove: aSymbol.
@@ -718,7 +720,7 @@ RG2BehaviorDefinition >> pvtRemoveMethodTag: aSymbol [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -734,14 +736,14 @@ RG2BehaviorDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtSuperclass [
 
 	^ superclass value
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtSuperclass: aRG2BehaviorDefinition [
 
 	aRG2BehaviorDefinition ifNotNil: [ 
@@ -751,7 +753,7 @@ RG2BehaviorDefinition >> pvtSuperclass: aRG2BehaviorDefinition [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtTagWith: aSymbol [
 	
 	tags isRing2Resolved ifFalse: [ 
@@ -761,31 +763,31 @@ RG2BehaviorDefinition >> pvtTagWith: aSymbol [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtTags: aCollection [
 
 	^ tags := aCollection
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtTagsDo: aBlock [
 
 	^ tags value do: aBlock
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtTagsForMethodsDo: aBlock [
 
 	^ tagsForMethods value do: aBlock
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtTraitComposition [
 
 	^ traitComposition value
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2BehaviorDefinition >> pvtTraitComposition: aRG2TraitCompositionDefinition [
 
 	self environment verifyOwnership: aRG2TraitCompositionDefinition.
@@ -793,7 +795,7 @@ RG2BehaviorDefinition >> pvtTraitComposition: aRG2TraitCompositionDefinition [
 	^ traitComposition := aRG2TraitCompositionDefinition
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2BehaviorDefinition >> pvtUntagFrom: aSymbol [
 	
 	(tags value includes: aSymbol)
@@ -804,19 +806,19 @@ RG2BehaviorDefinition >> pvtUntagFrom: aSymbol [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> referencedBehaviors [
 
 	^ { self superclass. self metaclass}, self traitComposition referencedBehaviors
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> referencedPackages [
 
 	^ Array new
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> removeLocalMethod: aRG2MethodDefinition [ 
 
 	(aRG2MethodDefinition package = self package)
@@ -828,7 +830,7 @@ RG2BehaviorDefinition >> removeLocalMethod: aRG2MethodDefinition [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> removeMethodTag: aSymbol [
 
 	self backend forPackage removeMethodTag: aSymbol from: self.
@@ -837,13 +839,13 @@ RG2BehaviorDefinition >> removeMethodTag: aSymbol [
 		method untagFrom: aSymbol ].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> removeProtocol: aSymbol [
 
 	self removeMethodTag: aSymbol.
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2BehaviorDefinition >> resolveName [
 
 	"try to set the correct name if sibling has already a name"
@@ -853,24 +855,24 @@ RG2BehaviorDefinition >> resolveName [
 
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2BehaviorDefinition >> selectors [
 
 	^ self methods collect: #name
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> sibling [
 
 	^ self subclassResponsibility.
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RG2BehaviorDefinition >> storeOn: aStream [ 
 	self name storeOn: aStream
 ]
 
-{ #category : #'accessing class hierarchy' }
+{ #category : 'accessing class hierarchy' }
 RG2BehaviorDefinition >> subclasses [
 
 	| result |
@@ -880,20 +882,20 @@ RG2BehaviorDefinition >> subclasses [
 	^ result asArray
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> superclass [
 
 	^ self backend forBehavior superclassFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> superclass: aRG2BehaviorDefinition [
 
 	self announceDefinitionChangeDuring: [ 
 		self backend forBehavior setSuperclassFor: self to: aRG2BehaviorDefinition ].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> tagWith: aSymbol [ 
 
 	self announceDefinitionChangeDuring: [ 
@@ -903,7 +905,7 @@ RG2BehaviorDefinition >> tagWith: aSymbol [
 	
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 RG2BehaviorDefinition >> tags [
 
 	| allTags |
@@ -913,13 +915,13 @@ RG2BehaviorDefinition >> tags [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> tagsDo: aBlock [
 
 	self backend forBehavior tagsForClass: self do: aBlock
 ]
 
-{ #category : #'accessing - model' }
+{ #category : 'accessing - model' }
 RG2BehaviorDefinition >> tagsForMethods [
 	"Retrieves the traits defined in the receiver"
 
@@ -930,48 +932,48 @@ RG2BehaviorDefinition >> tagsForMethods [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> tagsForMethodsDo: aBlock [
 
 	self backend forBehavior tagsForMethodsFor: self do: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> theMetaClass [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> theNonMetaClass [
 	^self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> traitComposition [
 
 	^ self backend forBehavior traitCompositionFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> traitComposition: aRG2TraitCompositionDefinition [
 
 	self announceDefinitionChangeDuring: [ 
 		self backend forBehavior setTraitCompositionFor: self to: aRG2TraitCompositionDefinition.].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2BehaviorDefinition >> traitCompositionString [
 	^ self traitComposition traitCompositionString
 		
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2BehaviorDefinition >> untagFrom: aSymbol [
 
 	self backend forPackage untagClass: self from: aSymbol
 ]
 
-{ #category : #asYetUnclassified }
+{ #category : 'asYetUnclassified' }
 RG2BehaviorDefinition >> usedTraits [
 
 	^ self traitComposition usedTraits

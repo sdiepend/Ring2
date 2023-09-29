@@ -1,15 +1,17 @@
 Class {
-	#name : #RG2MergeError,
-	#superclass : #Error,
+	#name : 'RG2MergeError',
+	#superclass : 'Error',
 	#instVars : [
 		'property',
 		'target',
 		'source'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MergeError class >> property: propertySymbol target: targetDefinition source: sourceDefinition [
 
 	^ self new
@@ -20,32 +22,32 @@ RG2MergeError class >> property: propertySymbol target: targetDefinition source:
 		
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MergeError >> property [
 	^ property
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MergeError >> property: anObject [
 	property := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MergeError >> source [
 	^ source
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MergeError >> source: anObject [
 	source := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MergeError >> target [
 	^ target
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MergeError >> target: anObject [
 	target := anObject
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #IndexedSlot }
+Extension { #name : 'IndexedSlot' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 IndexedSlot >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ self class == IndexedSlot 

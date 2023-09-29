@@ -1,6 +1,6 @@
-Extension { #name : #ByteLayout }
+Extension { #name : 'ByteLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 ByteLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

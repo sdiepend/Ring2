@@ -2,12 +2,14 @@
 A pool variable definition
 "
 Class {
-	#name : #RG2PoolVariableDefinition,
-	#superclass : #RG2VariableDefinition,
-	#category : 'Ring2-Core-Kernel'
+	#name : 'RG2PoolVariableDefinition',
+	#superclass : 'RG2VariableDefinition',
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2PoolVariableDefinition >> addoptToParentStub [
 
 	super addoptToParentStub.
@@ -15,13 +17,13 @@ RG2PoolVariableDefinition >> addoptToParentStub [
 	self environment backend createUnresolvedClassGroupFor: self parent
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2PoolVariableDefinition >> defaultParentStub [
 
 	^ self defaultClassStub
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2PoolVariableDefinition >> isPoolVariable [
 
 	^true

@@ -1,20 +1,22 @@
 Class {
-	#name : #RG2TraitCompositionDefinition,
-	#superclass : #RG2Definition,
+	#name : 'RG2TraitCompositionDefinition',
+	#superclass : 'RG2Definition',
 	#instVars : [
 		'transformations'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitCompositionDefinition >> addTransformation: aRG2TraitTransformationDefinition [ 
 
 	self parent announceDefinitionChangeDuring: [ 
 		self backend forBehavior addTransformation: aRG2TraitTransformationDefinition to: self ].
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2TraitCompositionDefinition >> addoptToParentStub [
 
 	super addoptToParentStub.
@@ -22,26 +24,26 @@ RG2TraitCompositionDefinition >> addoptToParentStub [
 	self environment backend createUnresolvedClassGroupFor: self parent
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitCompositionDefinition >> cleanTransformations [
 
 	self parent announceDefinitionChangeDuring: [ 
 		self backend forBehavior cleanTransformationsFor: self ].
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2TraitCompositionDefinition >> defaultParentStub [
 
 	^ self defaultClassStub
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitCompositionDefinition >> defaultTransformations [
 
 	^ OrderedCollection new.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2TraitCompositionDefinition >> initialize [
 
 	super initialize.
@@ -49,7 +51,7 @@ RG2TraitCompositionDefinition >> initialize [
 	transformations := self unresolvedValue: self defaultTransformations.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2TraitCompositionDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -57,13 +59,13 @@ RG2TraitCompositionDefinition >> initializeUnresolved [
 	transformations := self unresolvedValue: self defaultTransformations.
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2TraitCompositionDefinition >> isTraitComposition [
 
 	^ true
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2TraitCompositionDefinition >> makeResolved [
 
 	super makeResolved.
@@ -72,14 +74,14 @@ RG2TraitCompositionDefinition >> makeResolved [
 
 ]
 
-{ #category : #'queries - methods' }
+{ #category : 'queries - methods' }
 RG2TraitCompositionDefinition >> methods [
 
 	^ Array streamContents: [ :stream | 
 		self transformationsDo: [ :transformation | stream nextPutAll: transformation methods ]]
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitCompositionDefinition >> pvtAddTransformation: aRG2TraitTransformationDefinition [
 
 	self environment verifyOwnership: aRG2TraitTransformationDefinition.
@@ -90,13 +92,13 @@ RG2TraitCompositionDefinition >> pvtAddTransformation: aRG2TraitTransformationDe
 	transformations add: aRG2TraitTransformationDefinition.	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitCompositionDefinition >> pvtCleanTransformations [
 
 	transformations := self defaultTransformations.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitCompositionDefinition >> pvtRemoveTransformation: aRG2TraitTransformationDefinition [
 
 	self environment verifyOwnership: aRG2TraitTransformationDefinition.
@@ -104,7 +106,7 @@ RG2TraitCompositionDefinition >> pvtRemoveTransformation: aRG2TraitTransformatio
 	transformations remove: aRG2TraitTransformationDefinition.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitCompositionDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -114,13 +116,13 @@ RG2TraitCompositionDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2TraitCompositionDefinition >> pvtTransformationsDo: aBlock [
 
 	transformations value do: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitCompositionDefinition >> referencedBehaviors [
 
 	^ self transformations collect: [ :each |
@@ -129,14 +131,14 @@ RG2TraitCompositionDefinition >> referencedBehaviors [
 			ifFalse: [ each subject ] ]
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitCompositionDefinition >> removeTransformation: aRG2TraitTransformationDefinition [
 
 	self parent announceDefinitionChangeDuring: [ 
 		self backend forBehavior removeTransformation: aRG2TraitTransformationDefinition from: self ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitCompositionDefinition >> traitCompositionString [
 
 	self transformations isEmpty ifTrue: [ ^ '{}' ].
@@ -148,13 +150,13 @@ RG2TraitCompositionDefinition >> traitCompositionString [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitCompositionDefinition >> traits [
 
 	^ self transformations collect: [:each | each trait]
 ]
 
-{ #category : #'queries - transformations' }
+{ #category : 'queries - transformations' }
 RG2TraitCompositionDefinition >> transformations [
 
 	| allTransformations |
@@ -164,13 +166,13 @@ RG2TraitCompositionDefinition >> transformations [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2TraitCompositionDefinition >> transformationsDo: aBlock [
 
 	self backend forBehavior transformationsFor: self do: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2TraitCompositionDefinition >> usedTraits [
 
 	^ self transformations flatCollect: [ :each | 

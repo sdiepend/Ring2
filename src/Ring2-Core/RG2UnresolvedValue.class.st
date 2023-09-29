@@ -1,13 +1,15 @@
 Class {
-	#name : #RG2UnresolvedValue,
-	#superclass : #Object,
+	#name : 'RG2UnresolvedValue',
+	#superclass : 'Object',
 	#instVars : [
 		'default'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2UnresolvedValue class >> recursive [
 
 	| unresolvedValue |
@@ -17,47 +19,47 @@ RG2UnresolvedValue class >> recursive [
 	^ unresolvedValue.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2UnresolvedValue >> default [
 	^ default
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2UnresolvedValue >> default: anObject [
 	default := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2UnresolvedValue >> isRing2FullyResolved [
 
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2UnresolvedValue >> isRing2FullyUnresolved [
 
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2UnresolvedValue >> isRing2Resolved [
 
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2UnresolvedValue >> orDefaultForUnresolved [
 
 	^ self default
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2UnresolvedValue >> referencedBehaviors [
 
 	^ #()
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2UnresolvedValue >> value [
 
 	^ self default

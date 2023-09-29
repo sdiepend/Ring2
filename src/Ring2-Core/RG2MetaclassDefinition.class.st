@@ -2,70 +2,72 @@
 RG2MetaclassDefinition is a concrete representation of metaclasses of classes (traits are excluded)
 "
 Class {
-	#name : #RG2MetaclassDefinition,
-	#superclass : #RG2ClassDescriptionDefinition,
+	#name : 'RG2MetaclassDefinition',
+	#superclass : 'RG2ClassDescriptionDefinition',
 	#instVars : [
 		'baseClass'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> baseBehavior [
 
 	^ self baseClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> baseBehavior: aBehavior [
 
 	^ self baseClass: aBehavior
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MetaclassDefinition >> baseClass [
 
 	^ self backend forBehavior baseClassFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2MetaclassDefinition >> baseClass: aRG2ClassDefinition [
 
 	self backend forBehavior setBaseClassFor: self to: aRG2ClassDefinition
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> bindingOf: varName [
 	
 	^ self baseClass bindingOf: varName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MetaclassDefinition >> category [
 
 	^ self baseClass category
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> classVarNames [
 
 	^ self theNonMetaClass classVarNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MetaclassDefinition >> comment [
 
 	^ self baseClass comment
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> defaultMetaClass [
 
 	"will be set correctly together with baseClass"
 	^ RG2UnresolvedValue new default: nil.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MetaclassDefinition >> definition [
 	"Refer to the comment in ClassDescription|definition."
 
@@ -91,7 +93,7 @@ RG2MetaclassDefinition >> definition [
 							nextPutAll: self slotDefinitionString]]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> initialize [
 
 	baseClass := RG2UnresolvedValue recursive.
@@ -101,24 +103,24 @@ RG2MetaclassDefinition >> initialize [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> instanceSide [
 	^ self baseClass 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2MetaclassDefinition >> isMeta [
 
 	^true
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2MetaclassDefinition >> isMetaclass [
 
 	^true
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2MetaclassDefinition >> makeResolved [
 
 	"try to set the correct name before resolving of it"
@@ -129,13 +131,13 @@ RG2MetaclassDefinition >> makeResolved [
 	baseClass := self baseClass.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MetaclassDefinition >> package [
 
 	^ self baseClass package
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2MetaclassDefinition >> pvtAsMetaclassTrait [
 
 	| newMetaclassTrait |
@@ -156,13 +158,13 @@ RG2MetaclassDefinition >> pvtAsMetaclassTrait [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2MetaclassDefinition >> pvtBaseClass [
 
 	^ baseClass value
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2MetaclassDefinition >> pvtBaseClass: aaRG2ClassDefinition [
 
 	self environment verifyOwnership: aaRG2ClassDefinition.
@@ -170,7 +172,7 @@ RG2MetaclassDefinition >> pvtBaseClass: aaRG2ClassDefinition [
 	^ baseClass := aaRG2ClassDefinition
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2MetaclassDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -180,13 +182,13 @@ RG2MetaclassDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> referencedBehaviors [
 
 	^ super referencedBehaviors, {self baseClass}
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2MetaclassDefinition >> setNameFromSiblingIfNeeded [
 
 	(self hasUnresolved: #name)
@@ -194,13 +196,13 @@ RG2MetaclassDefinition >> setNameFromSiblingIfNeeded [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2MetaclassDefinition >> sibling [
 
 	^ self baseClass.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2MetaclassDefinition >> theNonMetaClass [
 	^self baseClass
 ]

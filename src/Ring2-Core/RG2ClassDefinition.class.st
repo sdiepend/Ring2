@@ -2,18 +2,20 @@
 RG2ClassDefinition is the concrete representation of a class (no trait)
 "
 Class {
-	#name : #RG2ClassDefinition,
-	#superclass : #RG2ClassDescriptionDefinition,
+	#name : 'RG2ClassDefinition',
+	#superclass : 'RG2ClassDescriptionDefinition',
 	#instVars : [
 		'comment',
 		'classVariables',
 		'package',
 		'sharedPools'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> addClassVariable: aRG2InstanceVariableDefinition [ 
 
 	self announceDefinitionChangeDuring: [ 
@@ -22,14 +24,14 @@ RG2ClassDefinition >> addClassVariable: aRG2InstanceVariableDefinition [
 	
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> addSharedPool: aRG2PoolVariableDefinition [ 
 
 	self announceDefinitionChangeDuring: [ 
 		self backend forBehavior addSharedPool: aRG2PoolVariableDefinition to: self ].
 ]
 
-{ #category : #'managing container' }
+{ #category : 'managing container' }
 RG2ClassDefinition >> addoptToParentStub [
 
 	super addoptToParentStub.
@@ -41,13 +43,13 @@ RG2ClassDefinition >> addoptToParentStub [
 
 ]
 
-{ #category : #'queries - variables' }
+{ #category : 'queries - variables' }
 RG2ClassDefinition >> allClassVarNames [
 
 	^self allClassVariables collect:[ :cvar| cvar name ]
 ]
 
-{ #category : #'queries - variables' }
+{ #category : 'queries - variables' }
 RG2ClassDefinition >> allClassVariables [
 	"Answer a collection of the receiver's classVariables, including those defined its superclasses"
 
@@ -56,7 +58,7 @@ RG2ClassDefinition >> allClassVariables [
 		ifFalse: [ self superclass allClassVariables, classVariables ]
 ]
 
-{ #category : #binding }
+{ #category : 'binding' }
 RG2ClassDefinition >> bindingOf: varName [
 
 	| aSymbol | 
@@ -66,7 +68,7 @@ RG2ClassDefinition >> bindingOf: varName [
 		 self environment bindingOf: aSymbol ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDefinition >> canMergeWith: aRG2Definition visited: visitedDefinitions [
 
 	(super canMergeWith: aRG2Definition visited: visitedDefinitions) ifFalse: [ ^ false ].
@@ -82,7 +84,7 @@ RG2ClassDefinition >> canMergeWith: aRG2Definition visited: visitedDefinitions [
 	^ true.
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> category [
 
 	^ self tags 
@@ -95,7 +97,7 @@ RG2ClassDefinition >> category [
 	"todo"
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> category: aString [
 
 	| aTag |
@@ -115,19 +117,19 @@ RG2ClassDefinition >> category: aString [
 	self announcer behaviorRecategorized: self."
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDefinition >> classSide [
 
 	^ self metaclass
 ]
 
-{ #category : #'queries - variables' }
+{ #category : 'queries - variables' }
 RG2ClassDefinition >> classVarNames [
 
 	^ self classVariables collect: #name
 ]
 
-{ #category : #'class variables' }
+{ #category : 'class variables' }
 RG2ClassDefinition >> classVariableDefinitionString [
 	"Answer a string that evaluates to the definition of the class Variables"
 	
@@ -142,7 +144,7 @@ RG2ClassDefinition >> classVariableDefinitionString [
 		str nextPutAll: ' }'. ]
 ]
 
-{ #category : #'queries - variables' }
+{ #category : 'queries - variables' }
 RG2ClassDefinition >> classVariables [
 
 	| allClassVariables |
@@ -151,7 +153,7 @@ RG2ClassDefinition >> classVariables [
 	^ allClassVariables asArray
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDefinition >> classVariables: aCollectionOfSymbols [
 
 	self cleanClassVariables.
@@ -159,32 +161,32 @@ RG2ClassDefinition >> classVariables: aCollectionOfSymbols [
 		self addClassVariable: (RG2ClassVariableDefinition named: classVarName asSymbol parent: self).].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> classVariablesDo: aBlock [
 
 	self backend forBehavior classVariablesFor: self do: aBlock
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> cleanClassVariables [
 
 	self announceDefinitionChangeDuring: [ 
 		self backend forBehavior cleanClassVariablesFor: self ].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> cleanSharedPools [
 
 	self backend forBehavior cleanSharedPoolsFor: self.
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> comment [
 
 	^ self backend forBehavior commentFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> comment: aRG2CommentDefinition [
 
 	self backend forBehavior setCommentFor: self to: aRG2CommentDefinition.
@@ -192,7 +194,7 @@ RG2ClassDefinition >> comment: aRG2CommentDefinition [
 	self announcer behaviorCommentModified: self.
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 RG2ClassDefinition >> copyForBehaviorDefinitionPostCopy [
 
 	| newVariables newSharedPools |
@@ -211,13 +213,13 @@ RG2ClassDefinition >> copyForBehaviorDefinitionPostCopy [
 
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2ClassDefinition >> defaultCategory [
 
 	^ nil
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2ClassDefinition >> defaultClassVariables [
 
 	^ OrderedCollection new
@@ -225,13 +227,13 @@ RG2ClassDefinition >> defaultClassVariables [
 	
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2ClassDefinition >> defaultComment [
 
 	^ self defaultCommentStubIn: self
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2ClassDefinition >> defaultPackage [
 
 	^ self defaultPackageStubIn: self environment
@@ -239,7 +241,7 @@ RG2ClassDefinition >> defaultPackage [
 	
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2ClassDefinition >> defaultSharedPools [
 
 	^ OrderedCollection new
@@ -247,7 +249,7 @@ RG2ClassDefinition >> defaultSharedPools [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2ClassDefinition >> definition [
 
 	| aStream poolString |
@@ -304,7 +306,7 @@ RG2ClassDefinition >> definition [
 	^ aStream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2ClassDefinition >> definitionWithSlots [
 
 	| aStream poolString|
@@ -342,13 +344,13 @@ RG2ClassDefinition >> definitionWithSlots [
 	^ aStream contents
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RG2ClassDefinition >> hasComment [
 
 	^ self comment isEmptyOrNil not
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2ClassDefinition >> initialize [
 
 	super initialize.
@@ -361,7 +363,7 @@ RG2ClassDefinition >> initialize [
 	
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2ClassDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -373,7 +375,7 @@ RG2ClassDefinition >> initializeUnresolved [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDefinition >> innerBindingOf2: aSymbol [
 
 	((self classVariables collect: #name) includes: aSymbol)
@@ -391,7 +393,7 @@ RG2ClassDefinition >> innerBindingOf2: aSymbol [
 	^ nil
 ]
 
-{ #category : #compiling }
+{ #category : 'compiling' }
 RG2ClassDefinition >> innerBindingOf: aSymbol [
 
 	self classVariables detect: [ :each | each name = aSymbol  ] ifFound: [ :found | ^ found ].
@@ -404,19 +406,19 @@ RG2ClassDefinition >> innerBindingOf: aSymbol [
 	^ nil
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2ClassDefinition >> isClass [
 	
 	^ true
 ]
 
-{ #category : #'queries - tags' }
+{ #category : 'queries - tags' }
 RG2ClassDefinition >> isTaggedWith: aSymbol [
 
 	^self tags includes: aSymbol 
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ClassDefinition >> makeResolved [
 
 	self resolveName.
@@ -430,13 +432,13 @@ RG2ClassDefinition >> makeResolved [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> package [
 
 	^ self backend forBehavior packageFor: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> package: aRG2Package [
 
 	| oldPackage |
@@ -454,7 +456,7 @@ RG2ClassDefinition >> package: aRG2Package [
 		newPackage: aRG2Package)
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtAddClassVariable: aRG2InstanceVariableDefinition [
 
 	self environment verifyOwnership: aRG2InstanceVariableDefinition.
@@ -465,7 +467,7 @@ RG2ClassDefinition >> pvtAddClassVariable: aRG2InstanceVariableDefinition [
 	classVariables add: aRG2InstanceVariableDefinition.	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtAddSharedPool: aRG2PoolVariableDefinition [
 
 	self environment verifyOwnership: aRG2PoolVariableDefinition.
@@ -476,7 +478,7 @@ RG2ClassDefinition >> pvtAddSharedPool: aRG2PoolVariableDefinition [
 	sharedPools add: aRG2PoolVariableDefinition.	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RG2ClassDefinition >> pvtAsTrait [
 
 	| newTrait |
@@ -498,31 +500,31 @@ RG2ClassDefinition >> pvtAsTrait [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtClassVariablesDo: aBlock [
 
 	classVariables value do: aBlock
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtCleanClassVariables [
 
 	classVariables := self defaultClassVariables.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtCleanSharedPools [
 
 	sharedPools := self defaultSharedPools.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtComment [
 
 	^ comment value
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtComment: aRG2CommentDefinition [
 
 	self environment verifyOwnership: aRG2CommentDefinition.
@@ -530,13 +532,13 @@ RG2ClassDefinition >> pvtComment: aRG2CommentDefinition [
 	^ comment := aRG2CommentDefinition
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtPackage [
 
 	^ package value
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtPackage: aRG2PackageDefinition [
 
 	self environment verifyOwnership: aRG2PackageDefinition.
@@ -544,7 +546,7 @@ RG2ClassDefinition >> pvtPackage: aRG2PackageDefinition [
 	^ package := aRG2PackageDefinition
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtRemoveClassVariable: aRG2InstanceVariableDefinition [
 
 	self environment verifyOwnership: aRG2InstanceVariableDefinition.
@@ -552,7 +554,7 @@ RG2ClassDefinition >> pvtRemoveClassVariable: aRG2InstanceVariableDefinition [
 	classVariables remove: aRG2InstanceVariableDefinition.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtRemoveSharedPool: aRG2PoolVariableDefinition [
 
 	self environment verifyOwnership: aRG2PoolVariableDefinition.
@@ -560,7 +562,7 @@ RG2ClassDefinition >> pvtRemoveSharedPool: aRG2PoolVariableDefinition [
 	sharedPools remove: aRG2PoolVariableDefinition.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -576,33 +578,33 @@ RG2ClassDefinition >> pvtResolvableProperties [
 
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2ClassDefinition >> pvtSharedPoolsDo: aBlock [
 
 	sharedPools value do: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDefinition >> referencedPackages [
 
 	^ Array with: self package.
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> removeClassVariable: aRG2InstanceVariableDefinition [
 
 	self announceDefinitionChangeDuring: [ 
 		self backend forBehavior removeClassVariable: aRG2InstanceVariableDefinition from: self ].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> removeSharedPool: aRG2PoolVariableDefinition [
 
 	self announceDefinitionChangeDuring: [ 
 		self backend forBehavior removeSharedPool: aRG2PoolVariableDefinition from: self ].
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2ClassDefinition >> setNameFromSiblingIfNeeded [
 
 	(self hasUnresolved: #name)
@@ -610,7 +612,7 @@ RG2ClassDefinition >> setNameFromSiblingIfNeeded [
 
 ]
 
-{ #category : #'queries - shared pools' }
+{ #category : 'queries - shared pools' }
 RG2ClassDefinition >> sharedPoolNames [
 
 	| allSharedPools |
@@ -619,7 +621,7 @@ RG2ClassDefinition >> sharedPoolNames [
 	^ allSharedPools asArray
 ]
 
-{ #category : #'queries - shared pools' }
+{ #category : 'queries - shared pools' }
 RG2ClassDefinition >> sharedPools [
 
 	| allSharedPools |
@@ -638,7 +640,7 @@ RG2ClassDefinition >> sharedPools [
 	^ allSharedPools 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDefinition >> sharedPools: aCollectionOfSymbols [
 
 	self cleanSharedPools.
@@ -646,19 +648,19 @@ RG2ClassDefinition >> sharedPools: aCollectionOfSymbols [
 		self addSharedPool: (RG2PoolVariableDefinition named: poolName asSymbol parent: self).].
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2ClassDefinition >> sharedPoolsDo: aBlock [
 
 	self backend forBehavior sharedPoolsFor: self do: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDefinition >> sibling [
 
 	^ self metaclass.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2ClassDefinition >> theMetaClass [
 	^ self metaclass
 ]

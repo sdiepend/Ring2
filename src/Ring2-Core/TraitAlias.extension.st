@@ -1,6 +1,6 @@
-Extension { #name : #TraitAlias }
+Extension { #name : 'TraitAlias' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 TraitAlias >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

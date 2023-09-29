@@ -1,6 +1,6 @@
-Extension { #name : #FixedLayout }
+Extension { #name : 'FixedLayout' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 FixedLayout >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [

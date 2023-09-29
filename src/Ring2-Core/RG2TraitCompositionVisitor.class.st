@@ -17,15 +17,17 @@ ast acceptVisitor: visitor.
 
 "
 Class {
-	#name : #RG2TraitCompositionVisitor,
-	#superclass : #RBProgramNodeVisitor,
+	#name : 'RG2TraitCompositionVisitor',
+	#superclass : 'RBProgramNodeVisitor',
 	#instVars : [
 		'traitComposition'
 	],
-	#category : 'Ring2-Core-Parsing'
+	#category : 'Ring2-Core-Parsing',
+	#package : 'Ring2-Core',
+	#tag : 'Parsing'
 }
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 RG2TraitCompositionVisitor >> parse: anExpressionString for: aRGTraitCompositionDefinition [
 
 	| ast result |
@@ -39,36 +41,36 @@ RG2TraitCompositionVisitor >> parse: anExpressionString for: aRGTraitComposition
 	^ result.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2TraitCompositionVisitor >> traitComposition [
 	^ traitComposition
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2TraitCompositionVisitor >> traitComposition: anObject [
 	traitComposition := anObject.
 	traitComposition pvtCleanTransformations.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RG2TraitCompositionVisitor >> visitArrayNode: anArrayNode [ 
 
 	^ anArrayNode children collect: [:each | self visitNode: each] 
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RG2TraitCompositionVisitor >> visitLiteralArrayNode: aRBLiteralArrayNode [ 
 
 	^ aRBLiteralArrayNode contents collect: [:each | self visitNode: each]
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RG2TraitCompositionVisitor >> visitLiteralNode: aLiteralNode [
 
 	^ aLiteralNode value
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RG2TraitCompositionVisitor >> visitMessageNode: aMessageNode [ 
 	
 	| rec args | 
@@ -113,13 +115,13 @@ RG2TraitCompositionVisitor >> visitMessageNode: aMessageNode [
 	self error: 'Unknown trait composition message'.
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RG2TraitCompositionVisitor >> visitSequenceNode: aSequenceNode [ 
 
 	^ aSequenceNode statements collect: [:each | self visitNode: each].
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RG2TraitCompositionVisitor >> visitVariableNode: aVariableNode [
 	
 	^ self traitComposition environment ensureTraitNamed: aVariableNode name

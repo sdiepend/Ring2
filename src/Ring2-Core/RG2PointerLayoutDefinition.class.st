@@ -1,26 +1,28 @@
 Class {
-	#name : #RG2PointerLayoutDefinition,
-	#superclass : #RG2LayoutDefinition,
+	#name : 'RG2PointerLayoutDefinition',
+	#superclass : 'RG2LayoutDefinition',
 	#instVars : [
 		'slots'
 	],
-	#category : 'Ring2-Core-Kernel'
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PointerLayoutDefinition >> addSlot: aRG2SlotDefinition [ 
 
 	self parent announceDefinitionChangeDuring: [ 
 		self backend forBehavior addSlot: aRG2SlotDefinition to: self ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2PointerLayoutDefinition >> allSlots [ 
 
 	^ self slots
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PointerLayoutDefinition >> cleanSlots [
 
 	self parent announceDefinitionChangeDuring: [ 
@@ -29,13 +31,13 @@ RG2PointerLayoutDefinition >> cleanSlots [
 	
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2PointerLayoutDefinition >> defaultSlots [
 
 	^ OrderedCollection new
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2PointerLayoutDefinition >> initialize [
 
 	super initialize.
@@ -44,7 +46,7 @@ RG2PointerLayoutDefinition >> initialize [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2PointerLayoutDefinition >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -53,18 +55,18 @@ RG2PointerLayoutDefinition >> initializeUnresolved [
 
 ]
 
-{ #category : #'queries - slots' }
+{ #category : 'queries - slots' }
 RG2PointerLayoutDefinition >> instVarNames [
 	^ self slots collect: #name
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2PointerLayoutDefinition >> isPointerLayout [
 
 	^ true
 ]
 
-{ #category : #resolving }
+{ #category : 'resolving' }
 RG2PointerLayoutDefinition >> makeResolved [
 
 	super makeResolved.
@@ -73,7 +75,7 @@ RG2PointerLayoutDefinition >> makeResolved [
 
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2PointerLayoutDefinition >> pvtAddSlot: aRG2SlotDefinition [
 
 	self environment verifyOwnership: aRG2SlotDefinition.
@@ -84,13 +86,13 @@ RG2PointerLayoutDefinition >> pvtAddSlot: aRG2SlotDefinition [
 	slots add: aRG2SlotDefinition.	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2PointerLayoutDefinition >> pvtCleanSlots [
 
 	slots := self defaultSlots.
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2PointerLayoutDefinition >> pvtRemoveSlot: aRG2SlotDefinition [
 
 	self environment verifyOwnership: aRG2SlotDefinition.
@@ -100,7 +102,7 @@ RG2PointerLayoutDefinition >> pvtRemoveSlot: aRG2SlotDefinition [
 
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2PointerLayoutDefinition >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -110,20 +112,20 @@ RG2PointerLayoutDefinition >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2PointerLayoutDefinition >> pvtSlotsDo: aBlock [
 
 	slots value do: aBlock
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PointerLayoutDefinition >> removeSlot: aRG2SlotDefinition [
 
 	self parent announceDefinitionChangeDuring: [ 
 		self backend forBehavior removeSlot: aRG2SlotDefinition from: self ].
 ]
 
-{ #category : #'queries - slots' }
+{ #category : 'queries - slots' }
 RG2PointerLayoutDefinition >> slots [
 
 	| allSlots |
@@ -132,7 +134,7 @@ RG2PointerLayoutDefinition >> slots [
 	^ allSlots asArray
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2PointerLayoutDefinition >> slotsDo: aBlock [
 
 	self backend forBehavior slotsFor: self do: aBlock

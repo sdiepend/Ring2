@@ -20,8 +20,8 @@ environment bootstrap.
 
 "
 Class {
-	#name : #RG2Environment,
-	#superclass : #RG2Definition,
+	#name : 'RG2Environment',
+	#superclass : 'RG2Definition',
 	#instVars : [
 		'announcer',
 		'behaviors',
@@ -30,10 +30,12 @@ Class {
 		'backend',
 		'queryInterface'
 	],
-	#category : 'Ring2-Core-Environment'
+	#category : 'Ring2-Core-Environment',
+	#package : 'Ring2-Core',
+	#tag : 'Environment'
 }
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> addBehavior: aRG2BehaviorDefinition [
 
 	self backend forEnvironment
@@ -54,13 +56,13 @@ RG2Environment >> addBehavior: aRG2BehaviorDefinition [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> addGlobalVariable: aRG2GlobalVariableDefinition [ 
 
 	self backend forBehavior addGlobalVariable: aRG2GlobalVariableDefinition to: self.
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> addPackage: aRG2Package [
 
 	self backend forPackage addPackage: aRG2Package to: self.
@@ -69,37 +71,37 @@ RG2Environment >> addPackage: aRG2Package [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Environment >> announcer [
 
 	^ announcer ifNil: [ announcer := RG2EnvironmentAnnouncer new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Environment >> ask [ 
 
 	^ queryInterface ifNil: [ queryInterface := RG2EnvironmentQueryInterface for: self ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Environment >> backend [ 
 
 	^ backend ifNil: [ backend := RG2EnvironmentBackend for: self ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Environment >> backend: anRG2EnvironmentBackend [
 
 	^ backend := anRG2EnvironmentBackend
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> behaviorsDo: aBlock [
 
 	self backend forEnvironment behaviorsFor: self do: aBlock
 ]
 
-{ #category : #binding }
+{ #category : 'binding' }
 RG2Environment >> bindingOf: aSymbol [
 	
 	| behavior result |
@@ -116,7 +118,7 @@ RG2Environment >> bindingOf: aSymbol [
 	^ result
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> child: aChildDefinition renamedFrom: oldName to: newName [
 
 	self queryInterface behaviorsDictionary removeKey: oldName ifAbsent: [].
@@ -124,14 +126,14 @@ RG2Environment >> child: aChildDefinition renamedFrom: oldName to: newName [
 
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> clean [
 
 	self cleanWithMetaclassNamed: #Metaclass
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> cleanBehaviors [
 
 	| oldBehaviors |
@@ -147,19 +149,19 @@ RG2Environment >> cleanBehaviors [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> cleanGlobalVariables [
 
 	self backend forBehavior cleanGlobalVariablesFor: self.
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> cleanPackages [
 
 	self backend forEnvironment cleanPackagesFor: self
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> cleanSuperclassesOfMetaclasses [
 
 	"fix suprclasses of metaclasses do not pointing to metaclasses of superclasses"
@@ -170,7 +172,7 @@ RG2Environment >> cleanSuperclassesOfMetaclasses [
 
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> cleanUnusedUnreferencedBehaviors [
 
 	"remove behaviors that are not linked in the graph of the named behaviors"
@@ -197,7 +199,7 @@ RG2Environment >> cleanUnusedUnreferencedBehaviors [
 	^ unreferenced
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> cleanUnusedUnreferencedPackages [
 
 	"remove packages that are not not used"
@@ -215,7 +217,7 @@ RG2Environment >> cleanUnusedUnreferencedPackages [
 	^ unreferenced
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> cleanWithMetaclassNamed: aProposedName [
 
 	self unifyMetaclass: aProposedName.
@@ -227,7 +229,7 @@ RG2Environment >> cleanWithMetaclassNamed: aProposedName [
 	self cleanUnusedUnreferencedPackages.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> createDefaultEnvironment [
 
 	| protoobject protoobjectClass object objectClass class classClass classDescription classDescriptionClass behavior behaviorClass metaclass metaclassClass kernelPackage |
@@ -297,31 +299,31 @@ RG2Environment >> createDefaultEnvironment [
 		
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2Environment >> defaultBehaviors [
 
 	^ IdentitySet new
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2Environment >> defaultGlobalVariables [
 
 	^ IdentitySet new
 ]
 
-{ #category : #'default model values' }
+{ #category : 'default model values' }
 RG2Environment >> defaultPackages [
 
 	^ IdentitySet new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Environment >> definitionFor: anObject [
 
 	^ self backend definitionFor: anObject.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> ensureClassNamed: aSymbol [
 
 	self assert: (aSymbol endsWith: ' classTrait') not.
@@ -350,7 +352,7 @@ RG2Environment >> ensureClassNamed: aSymbol [
 			newBehavior ] 
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> ensureClassTrait [
 
 	| aClassTrait |
@@ -369,7 +371,7 @@ RG2Environment >> ensureClassTrait [
 	^ aClassTrait.
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> ensureMetaclass [
 
 	| aMetaclass |
@@ -388,7 +390,7 @@ RG2Environment >> ensureMetaclass [
 	^ aMetaclass.
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> ensureMetaclass: aProposedName [
 
 	| aMetaclass |
@@ -407,7 +409,7 @@ RG2Environment >> ensureMetaclass: aProposedName [
 	^ aMetaclass.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> ensureMetaclassTraitNamed: aSymbol [
 
 	| found newTrait newMetaclassTrait similarMetaclass similarMetaclassName siblingName sibling originalMetaclass |
@@ -486,7 +488,7 @@ RG2Environment >> ensureMetaclassTraitNamed: aSymbol [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> ensurePackageNamed: aSymbol [
 
 	^ self ask packages 
@@ -499,7 +501,7 @@ RG2Environment >> ensurePackageNamed: aSymbol [
 
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> ensureTrait [
 
 	| aTrait |
@@ -518,7 +520,7 @@ RG2Environment >> ensureTrait [
 	^ aTrait.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> ensureTraitNamed: aSymbol [
 
 	| found newTrait newMetaclassTrait siblingName sibling originalMetaclass |
@@ -566,7 +568,7 @@ RG2Environment >> ensureTraitNamed: aSymbol [
 	
 ]
 
-{ #category : #'unpackaged ' }
+{ #category : 'unpackaged ' }
 RG2Environment >> ensureUnpackagedPackage [
 
 	^ self unpackagedPackageOrNil
@@ -578,32 +580,32 @@ RG2Environment >> ensureUnpackagedPackage [
 			^ newPackage ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Environment >> environment [ 
 
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> fixProtoObjectClassSuperclass [
 
 	(self ask classNamed: #'ProtoObject class') superclass: (self ask classNamed: #Class).
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> globalVariablesBindings [
 
 	^ self propertyNamed: #globalVariablesBindings ifAbsentPut: [ IdentityDictionary new.]
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> globalVariablesDo: aBlock [
 
 	self backend forBehavior globalVariablesFor: self do: aBlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 RG2Environment >> hasTraits [
 
 	self behaviorsDo: [ :each |
@@ -612,7 +614,7 @@ RG2Environment >> hasTraits [
 	^ false
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2Environment >> initialize [
 
 	super initialize.
@@ -624,7 +626,7 @@ RG2Environment >> initialize [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RG2Environment >> initializeUnresolved [
 
 	super initializeUnresolved.
@@ -636,13 +638,13 @@ RG2Environment >> initializeUnresolved [
 
 ]
 
-{ #category : #'testing types' }
+{ #category : 'testing types' }
 RG2Environment >> isEnvironment [
 
 	^ true
 ]
 
-{ #category : #merging }
+{ #category : 'merging' }
 RG2Environment >> merge: aRG2Package [
 
 	super merge: aRG2Package.
@@ -661,19 +663,19 @@ RG2Environment >> merge: aRG2Package [
 	"TODO:extension methods"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Environment >> package [
 
 	^ nil
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> packagesDo: aBlock [
 
 	self backend  packagesFor: self do: aBlock
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtAddBehavior: aRG2BehaviorDefinition [
 
 	self environment verifyOwnership: aRG2BehaviorDefinition.
@@ -690,7 +692,7 @@ RG2Environment >> pvtAddBehavior: aRG2BehaviorDefinition [
 		
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2Environment >> pvtAddGlobalVariable: aRG2GlobalVariableDefinition [
 
 	self environment verifyOwnership: aRG2GlobalVariableDefinition.
@@ -701,7 +703,7 @@ RG2Environment >> pvtAddGlobalVariable: aRG2GlobalVariableDefinition [
 	globalVariables add: aRG2GlobalVariableDefinition.	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtAddPackage: aRG2Package [
 
 	self environment verifyOwnership: aRG2Package.
@@ -713,13 +715,13 @@ RG2Environment >> pvtAddPackage: aRG2Package [
 		
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtBehaviorsDo: aBlock [
 
 	^ behaviors value do: aBlock
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtCleanBehaviors [
 
 	behaviors := self defaultBehaviors.
@@ -729,13 +731,13 @@ RG2Environment >> pvtCleanBehaviors [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2Environment >> pvtCleanGlobalVariables [
 
 	globalVariables := self defaultGlobalVariables.
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtCleanPackages [
 
 	packages := self defaultPackages.
@@ -745,19 +747,19 @@ RG2Environment >> pvtCleanPackages [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2Environment >> pvtGlobalVariablesDo: aBlock [
 
 	globalVariables value do: aBlock
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtPackagesDo: aBlock [
 
 	^ packages value do: aBlock
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtRemoveBehavior: aRG2BehaviorDefinition [
 
 	self verifyOwnership: aRG2BehaviorDefinition.
@@ -769,7 +771,7 @@ RG2Environment >> pvtRemoveBehavior: aRG2BehaviorDefinition [
 	
 ]
 
-{ #category : #'private - backend access' }
+{ #category : 'private - backend access' }
 RG2Environment >> pvtRemoveGlobalVariable: aRG2GlobalVariableDefinition [
 
 	self environment verifyOwnership: aRG2GlobalVariableDefinition.
@@ -777,7 +779,7 @@ RG2Environment >> pvtRemoveGlobalVariable: aRG2GlobalVariableDefinition [
 	globalVariables remove: aRG2GlobalVariableDefinition.
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtRemovePackage: aRG2Package [
 
 	self verifyOwnership: aRG2Package.
@@ -789,7 +791,7 @@ RG2Environment >> pvtRemovePackage: aRG2Package [
 	
 ]
 
-{ #category : #'private - backend interface' }
+{ #category : 'private - backend interface' }
 RG2Environment >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
@@ -801,13 +803,13 @@ RG2Environment >> pvtResolvableProperties [
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2Environment >> queryInterface [
 
 	^ self ask
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> removeBehavior: aRG2BehaviorDefinition [
 
 	self backend forEnvironment removeBehavior: aRG2BehaviorDefinition from: self.
@@ -827,13 +829,13 @@ RG2Environment >> removeBehavior: aRG2BehaviorDefinition [
 
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> removeGlobalVariable: aRG2GlobalVariableDefinition [
 
 	self backend forBehavior removeGlobalVariable: aRG2GlobalVariableDefinition from: self
 ]
 
-{ #category : #'accessing - backend' }
+{ #category : 'accessing - backend' }
 RG2Environment >> removePackage: aRG2Package [
 
 	self backend forPackage removePackage: aRG2Package from: self.
@@ -842,7 +844,7 @@ RG2Environment >> removePackage: aRG2Package [
 
 ]
 
-{ #category : #'unpackaged ' }
+{ #category : 'unpackaged ' }
 RG2Environment >> removeUnusedPackages [
 
 	"remove all packages that are not used in the system. It cannot be done automatically
@@ -863,7 +865,7 @@ RG2Environment >> removeUnusedPackages [
 			ifFalse: [ self removePackage: each ] ].
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> unifyClassTrait [
 
 	"set all metaclasses of classTraits to the same object (ClassTrait) "
@@ -878,7 +880,7 @@ RG2Environment >> unifyClassTrait [
 
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> unifyMetaclass [
 
 	"set all metaclasses of metaclasses to the same object (Metaclass) "
@@ -893,7 +895,7 @@ RG2Environment >> unifyMetaclass [
 
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> unifyMetaclass: aProposedName [
 
 	"set all metaclasses of metaclasses to the same object (Metaclass) "
@@ -908,7 +910,7 @@ RG2Environment >> unifyMetaclass: aProposedName [
 
 ]
 
-{ #category : #cleaning }
+{ #category : 'cleaning' }
 RG2Environment >> unifyTrait [
 
 	"set all metaclasses of metaclasses to the same object (Metaclass) "
@@ -926,7 +928,7 @@ RG2Environment >> unifyTrait [
 
 ]
 
-{ #category : #'unpackaged ' }
+{ #category : 'unpackaged ' }
 RG2Environment >> unpackagedPackage [
 
 	| aProtocol |
@@ -937,13 +939,13 @@ RG2Environment >> unpackagedPackage [
 
 ]
 
-{ #category : #'unpackaged ' }
+{ #category : 'unpackaged ' }
 RG2Environment >> unpackagedPackageName [
 
 	^ '_UnpackagedPackage' asSymbol
 ]
 
-{ #category : #'unpackaged ' }
+{ #category : 'unpackaged ' }
 RG2Environment >> unpackagedPackageOrNil [
 
 	self packagesDo: [ :each |
@@ -953,7 +955,7 @@ RG2Environment >> unpackagedPackageOrNil [
 
 ]
 
-{ #category : #utility }
+{ #category : 'utility' }
 RG2Environment >> verifyOwnership: aRG2Definition [
 
 	"ignore unresolved values. TODO: check default values ownership?"

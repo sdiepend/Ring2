@@ -76,12 +76,14 @@ Example:
 
 "
 Class {
-	#name : #RG2ElementDefinition,
-	#superclass : #RG2Definition,
-	#category : 'Ring2-Core-Kernel'
+	#name : 'RG2ElementDefinition',
+	#superclass : 'RG2Definition',
+	#category : 'Ring2-Core-Kernel',
+	#package : 'Ring2-Core',
+	#tag : 'Kernel'
 }
 
-{ #category : #'parsing stamp' }
+{ #category : 'parsing stamp' }
 RG2ElementDefinition class >> basicParseAuthorAliasFrom: aString [
 	"Parse an alias/name of the author from a string that is extracted from a source file. If there is no alias/name we return emtpy string."
 
@@ -118,20 +120,20 @@ RG2ElementDefinition class >> basicParseAuthorAliasFrom: aString [
 		do: [ :e | unknown ]
 ]
 
-{ #category : #'parsing stamp' }
+{ #category : 'parsing stamp' }
 RG2ElementDefinition class >> parseAuthorAliasFrom: aString [
 	"Allows other applications  to treat a different empty alias by overriding this method"
 	
 	^self basicParseAuthorAliasFrom: aString
 ]
 
-{ #category : #'parsing stamp' }
+{ #category : 'parsing stamp' }
 RG2ElementDefinition class >> parseTimestampFrom: aString [
 	
 	^self parseTimestampFrom: aString default: nil
 ]
 
-{ #category : #'parsing stamp' }
+{ #category : 'parsing stamp' }
 RG2ElementDefinition class >> parseTimestampFrom: aString default: anObject [
 	"Parse a date-time from a timestamp-string that is extracted from a source file. If there is no timestamp, or we cannot make sense of it, we return the default value."
 
@@ -163,7 +165,7 @@ RG2ElementDefinition class >> parseTimestampFrom: aString default: anObject [
 		do: [ :e | unknown ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RG2ElementDefinition >> package [
 
 	^ self parent package

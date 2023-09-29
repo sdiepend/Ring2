@@ -1,6 +1,6 @@
-Extension { #name : #TraitExclusion }
+Extension { #name : 'TraitExclusion' }
 
-{ #category : #'*Ring2-Core' }
+{ #category : '*Ring2-Core' }
 TraitExclusion >> asRing2MinimalDefinitionIn: aRG2Environment [
 
 	^ aRG2Environment backend definitionFor: self ifAbsentRegister: [
